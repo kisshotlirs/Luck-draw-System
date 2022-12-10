@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    # cn.baiqi.gateway 网关
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true   #开启服务名访问
+          lower-case-service-id: true   #大小写忽略
