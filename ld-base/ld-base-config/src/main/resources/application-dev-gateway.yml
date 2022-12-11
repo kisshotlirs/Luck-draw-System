@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    # cn.baiqi.gateway 网关
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      routes:
+        - id: ld-lucky
+          uri: http://127.0.0.1:7214/
+          predicates:
+            - Path=/bld-lucky/**
+          filters:
+            # 1表示过滤一个路径
+            - StripPrefix=1
+
+# 忽略 url 拦截
+bld.gateway:
+  ignoreUrlSet:
+    - /user/login
+    - /user/register
+  authorization: Authorization
