@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ld-user
+server:
+  port: 7216

@@ -1,0 +1,13 @@
+package cn.ld.client;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LuckClientApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(LuckClientApplication.class, args);
+    }
+
+}

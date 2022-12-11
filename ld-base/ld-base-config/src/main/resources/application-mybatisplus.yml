@@ -35,6 +35,7 @@ spring.datasource:
 
 mybatis-plus:
   map-underscore-to-camel-case: true
-  type-enums-package: cn.j3code.bldbase.enums,cn.j3code.botqq.enums,cn.j3code.lucky.enums
+  type-enums-package: cn.cn.ldbase.enums,cn.ld.botqq.enums,cn.ld.luck.enums
+  mapper-locations:
 
 mybatis-plus.configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

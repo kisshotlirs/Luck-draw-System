@@ -5,23 +5,20 @@
 
     <parent>
         <groupId>cn.ld</groupId>
-        <artifactId>luck-draw</artifactId>
+        <artifactId>ld-luck</artifactId>
         <version>11.26-0.0.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <packaging>pom</packaging>
-    <artifactId>ld-server</artifactId>
-
-    <modules>
-        <module>ld-luck</module>
-    </modules>
+    <packaging>jar</packaging>
+    <artifactId>luck-adapter</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>cn.ld</groupId>
-            <artifactId>ld-base-common</artifactId>
-            <version>11.26-0.0.1-SNAPSHOT</version>
+            <artifactId>luck-app</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>
