@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author mojo
- * @description: 用户注册 请求
+ * @description: 用户注册 请求   cmd包下是修改相关的请求
  * @date 2022/12/11 0011 19:35
  */
 @Data

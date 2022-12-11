@@ -6,12 +6,14 @@ import cn.ld.client.dto.data.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.client.dto.query.UserLoginQuery;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.stereotype.Service;
 
 /**
  * @author mojo
  * @description: 用户功能接口
  * @date 2022/12/11 0011 19:25
  */
+@Service
 public interface UserService {
 
     /**
