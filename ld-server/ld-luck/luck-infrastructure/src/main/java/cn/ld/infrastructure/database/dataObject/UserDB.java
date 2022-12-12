@@ -1,4 +1,4 @@
-package cn.ld.infrastructure.gatewayImpl.database.dataObject;
+package cn.ld.infrastructure.database.dataObject;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

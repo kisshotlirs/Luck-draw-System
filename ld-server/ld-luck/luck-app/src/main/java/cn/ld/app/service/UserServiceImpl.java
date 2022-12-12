@@ -23,11 +23,14 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     /**
-     * 构造器注入（可能的问题：循环依赖无法解决）
+     * 构造器注入（可能的问题：循环依赖无法解决，工程师解决）
      * 高度内聚的架构
      */
     private final UserRegisterCmdExe userRegisterCmdExe;
 
+    /**
+     * 用户注册
+     */
     @Override
     public UserVO register(UserRegisterCmd cmd) {
         return userRegisterCmdExe.execute(cmd);

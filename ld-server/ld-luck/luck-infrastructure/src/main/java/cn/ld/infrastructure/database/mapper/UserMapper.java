@@ -1,7 +1,8 @@
-package cn.ld.infrastructure.gatewayImpl.database.mapper;
+package cn.ld.infrastructure.database.mapper;
 
-import cn.ld.infrastructure.gatewayImpl.database.dataObject.UserDB;
+import cn.ld.infrastructure.database.dataObject.UserDB;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author Administrator
@@ -11,6 +12,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserMapper extends BaseMapper<UserDB> {
 
+    /**
+     * 校验用户是否存在
+     */
+    UserDB getByName(@Param("id") Long id,@Param("username") String username);
 }
 
 
