@@ -3,6 +3,7 @@ package cn.ld.adapter.web;
 import cn.ld.client.api.UserService;
 import cn.ld.client.dto.cmd.UserRegisterCmd;
 import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.query.UserLoginQuery;
 import cn.ld.common.annotation.ResponseResult;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,11 @@ public class UserController {
     @PostMapping("/register")
     public UserVO register(@RequestBody @Validated UserRegisterCmd cmd){
         return userService.register(cmd);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody @Validated UserLoginQuery query){
+        return userService.login(query);
     }
 
 }

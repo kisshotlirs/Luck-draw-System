@@ -1,12 +1,14 @@
 package cn.ld.infrastructure.gatewayImpl;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
 import cn.ld.infrastructure.convertor.UserConvertor;
 import cn.ld.infrastructure.database.dataObject.UserDB;
 import cn.ld.infrastructure.database.mapper.UserMapper;
 import com.alibaba.cola.exception.SysException;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -34,11 +36,17 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
-    public UserEntity getByName(Long id, String username) {
+    public UserEntity getByUsername(Long id, String username) {
         UserDB userDB = userMapper.getByName(id,username);
         if (ObjectUtil.isNull(userDB)){
             return null;
         }
         return UserConvertor.toUserEntity(userDB);
+    }
+
+    @Override
+    public IPage<UserEntity> listByQuery(UserListByParamQuery query) {
+
+        return null;
     }
 }

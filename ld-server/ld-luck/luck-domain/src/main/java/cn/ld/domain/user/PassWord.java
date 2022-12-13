@@ -3,6 +3,7 @@ package cn.ld.domain.user;
 import cn.hutool.crypto.digest.MD5;
 import com.alibaba.cola.domain.Entity;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author mojo
@@ -10,18 +11,19 @@ import lombok.Getter;
  * @date 2022/12/11 0011 18:49
  */
 @Getter
+@Setter
 public class PassWord {
 
     private Encrypt encrypt;
 
-    public PassWord(String password) {
-        this.encrypt = new Encrypt(getEncryptPassword(password));
+    public PassWord(Encrypt encrypt) {
+        this.encrypt = encrypt;
     }
 
     /**
      * 获取加密密码
      */
-    private String getEncryptPassword(String password) {
+    public static String getEncryptPassword(String password) {
         return MD5.create().digestHex(password);
     }
 

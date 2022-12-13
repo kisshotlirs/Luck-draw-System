@@ -13,6 +13,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.util.Objects;
@@ -23,7 +24,7 @@ import java.util.Objects;
  * @date 2022/12/10 0010 16:49
  */
 @Slf4j
-@Component
+@ControllerAdvice
 public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
     /**

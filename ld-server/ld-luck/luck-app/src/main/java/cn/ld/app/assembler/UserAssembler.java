@@ -18,7 +18,9 @@ public class UserAssembler {
     public static UserEntity cmdToEntity(UserRegisterCmd cmd) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(new UserName(cmd.getUsername()));
-        userEntity.setPassword(new PassWord(cmd.getPassword()));
+
+        String password = PassWord.getEncryptPassword(cmd.getPassword());
+        userEntity.setPassword(new PassWord(new PassWord.Encrypt(password)));
         userEntity.setName(cmd.getName());
         userEntity.setPhone(cmd.getPhone());
         userEntity.setCreateTime(LocalDateTime.now());

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author mojo
- * @description: 执行器
+ * @description: 用户注册 执行器
  * @date 2022/12/11 0011 22:26
  */
 @Slf4j
@@ -31,7 +31,7 @@ public class UserRegisterCmdExe {
      */
     public UserVO execute(UserRegisterCmd cmd){
         //根据账号校验用户是否存在
-        UserEntity oldEntity = userGateway.getByName(null,cmd.getUsername());
+        UserEntity oldEntity = userGateway.getByUsername(null,cmd.getUsername());
         if (ObjectUtil.isNotNull(oldEntity)){
             throw new SysException("账号已存在");
         }

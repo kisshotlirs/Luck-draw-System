@@ -26,9 +26,9 @@ public interface UserService {
     /**
      * 用户登录
      * @param query 登录请求
-     * @return userVO
+     * @return token
      */
-    UserVO login(UserLoginQuery query);
+    String login(UserLoginQuery query);
 
     /**
      * 用户分页查询
@@ -41,7 +41,7 @@ public interface UserService {
     UserVO getOne(Long id);
 
     /**
-     * 更新用户
+     * 修改用户
      */
     UserVO update(UserUpdateCmd cmd);
 

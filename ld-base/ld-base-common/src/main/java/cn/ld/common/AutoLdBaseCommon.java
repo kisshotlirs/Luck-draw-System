@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * @author mojo
  */
 @Configuration
-@ComponentScan(basePackages = {"cn.ld.common","cn.ld.config"})
+@ComponentScan(basePackages = {"cn.ld","cn.ld.common","cn.ld.config"})
 public class AutoLdBaseCommon {
 
 }

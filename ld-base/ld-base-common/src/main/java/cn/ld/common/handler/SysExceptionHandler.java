@@ -1,5 +1,6 @@
 package cn.ld.common.handler;
 
+import cn.ld.config.exception.AuthException;
 import cn.ld.config.exception.ldException;
 import cn.ld.config.vo.FailInfo;
 import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
@@ -75,4 +76,15 @@ public class SysExceptionHandler {
         }
         return new FailInfo(500, message);
     }
+
+    /**
+     * 权限认证异常
+     */
+    @ExceptionHandler(value = AuthException.class)
+    public FailInfo authException(Exception ex) {
+        log.error("Exception_info:{}", ex.getMessage());
+        log.error("Exception_info:", ex);
+        return FailInfo.builder().exception(ex.getMessage()).build();
+    }
+
 }
