@@ -90,7 +90,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserVO update(UserUpdateCmd cmd) {
-
-        return userUpdateCmdExe.execute(cmd);;
+        return userUpdateCmdExe.execute(cmd);
     }
 }

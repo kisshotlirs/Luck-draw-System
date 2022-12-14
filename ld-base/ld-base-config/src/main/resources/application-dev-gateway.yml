@@ -18,7 +18,7 @@ spring:
             - StripPrefix=1
 
 # 忽略 url 拦截
-bld.gateway:
+ld:jwt-token-global-filter:
   ignoreUrlSet:
     - /user/login
     - /user/register

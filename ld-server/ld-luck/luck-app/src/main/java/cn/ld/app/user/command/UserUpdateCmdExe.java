@@ -1,7 +1,10 @@
 package cn.ld.app.user.command;
 
+import cn.ld.app.assembler.UserAssembler;
 import cn.ld.client.dto.cmd.UserUpdateCmd;
 import cn.ld.client.dto.data.UserVO;
+import cn.ld.domain.gateway.UserGateway;
+import cn.ld.domain.user.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +17,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class UserUpdateCmdExe {
 
+    private final UserGateway userGateway;
+
     /**
      * 用户更新
      */
     public UserVO execute(UserUpdateCmd cmd) {
-        return null;
+        UserEntity entity = UserAssembler.toUpdateEntity(cmd);
+        UserEntity result = userGateway.save(entity);
+        return UserAssembler.toUserVO(result);
     }
 }

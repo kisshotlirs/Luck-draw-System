@@ -1,4 +1,6 @@
 package cn.ld.app.assembler;
+import cn.hutool.core.util.StrUtil;
+import cn.ld.client.dto.cmd.UserUpdateCmd;
 import cn.ld.domain.user.UserName;
 import cn.ld.domain.user.PassWord;
 
@@ -7,6 +9,8 @@ import java.time.LocalDateTime;
 import cn.ld.client.dto.cmd.UserRegisterCmd;
 import cn.ld.client.dto.data.UserVO;
 import cn.ld.domain.user.UserEntity;
+
+import static cn.ld.domain.user.PassWord.getEncryptPassword;
 
 /**
  * @author mojo
@@ -19,7 +23,7 @@ public class UserAssembler {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(new UserName(cmd.getUsername()));
 
-        String password = PassWord.getEncryptPassword(cmd.getPassword());
+        String password = getEncryptPassword(cmd.getPassword());
         userEntity.setPassword(new PassWord(new PassWord.Encrypt(password)));
         userEntity.setName(cmd.getName());
         userEntity.setPhone(cmd.getPhone());
@@ -37,5 +41,19 @@ public class UserAssembler {
         userVO.setCreateTime(LocalDateTime.now());
         userVO.setUpdateTime(LocalDateTime.now());
         return userVO;
+    }
+
+    public static UserEntity toUpdateEntity(UserUpdateCmd cmd) {
+        UserEntity entity = new UserEntity();
+        entity.setId(cmd.getId());
+        entity.setUsername(new UserName(cmd.getUsername()));
+        if(!StrUtil.isBlank(cmd.getPassword())){
+            String password = getEncryptPassword(cmd.getPassword());
+            entity.setPassword(new PassWord(new PassWord.Encrypt(password)));
+        }
+        entity.setName(cmd.getName());
+        entity.setPhone(cmd.getPhone());
+        entity.setUpdateTime(LocalDateTime.now());
+        return entity;
     }
 }

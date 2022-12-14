@@ -24,6 +24,9 @@ public class UserUpdateCmd extends Command {
     @NotNull(message = "账号不为空")
     private String username;
 
+    @NotNull(message = "密码不为空")
+    private String password;
+
     /**
      * 姓名
      */

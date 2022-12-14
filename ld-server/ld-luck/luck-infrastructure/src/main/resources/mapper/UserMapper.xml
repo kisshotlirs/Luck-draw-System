@@ -34,4 +34,19 @@
         </where>
     </select>
 
+    <select id="liatByQuery" resultType="cn.ld.infrastructure.database.dataObject.UserDB">
+        select * from ld_user u
+        <where>
+            <if test="query.id!=null">
+                and u.id=#{query.id}
+            </if>
+            <if test=" query.name! = null and query.name !='' ">
+                and u.name like concat('%',#{query.name},'%')
+            </if>
+            <if test=" query.phone! = null and query.phone !='' ">
+                and u.name=#{query.phone}
+            </if>
+        </where>
+    </select>
+
 </mapper>

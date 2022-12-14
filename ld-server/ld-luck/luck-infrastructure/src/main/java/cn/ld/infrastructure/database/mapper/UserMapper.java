@@ -1,7 +1,11 @@
 package cn.ld.infrastructure.database.mapper;
 
+import cn.ld.client.dto.query.UserListByParamQuery;
+import cn.ld.domain.user.UserEntity;
 import cn.ld.infrastructure.database.dataObject.UserDB;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -16,6 +20,11 @@ public interface UserMapper extends BaseMapper<UserDB> {
      * 校验用户是否存在
      */
     UserDB getByName(@Param("id") Long id,@Param("username") String username);
+
+    /**
+     * 分页查询用户
+     */
+    IPage<UserDB> liatByQuery(@Param("page") Page<UserEntity> userEntityPage,@Param("query") UserListByParamQuery query);
 }
 
 
