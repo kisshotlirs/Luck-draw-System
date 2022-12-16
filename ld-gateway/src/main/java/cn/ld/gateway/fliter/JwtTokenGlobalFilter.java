@@ -2,6 +2,7 @@ package cn.ld.gateway.fliter;
 
 import cn.ld.config.exception.ldException;
 import cn.ld.config.util.JwtUtil;
+import cn.ld.config.util.SecurityUtil;
 import cn.ld.config.vo.FailInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,19 +16,22 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * @author mojo
- * @description: 登录拦截认证
+ * @description: 登录过滤认证
  * @date 2022/12/14 0014 21:02
  */
 @Slf4j
@@ -72,7 +76,16 @@ public class JwtTokenGlobalFilter implements GlobalFilter {
         String token = exchange.getRequest().getHeaders().getFirst(authorization);
         ServerHttpResponse response = exchange.getResponse();
         try {
-            Map<String, Object> map = JwtUtil.verifyToken(token);
+            Map<String, Object> userMap = JwtUtil.verifyToken(token);
+            //SecurityUtil.addLocal(userMap);
+
+            //重新定义请求头，在请求头中放入用户信息
+            ServerHttpRequest.Builder mutate = exchange.getRequest().mutate();
+            mutate.header("name", URLEncoder.encode(Objects.isNull(userMap.get("name")) ? "" : userMap.get("name").toString()), "UTF-8");
+            mutate.header("username", URLEncoder.encode(Objects.isNull(userMap.get("username")) ? "" : userMap.get("username").toString()), "UTF-8");
+            mutate.header("id", Objects.isNull(userMap.get("id")) ? "0" : userMap.get("id").toString());
+            mutate.header("phone", Objects.isNull(userMap.get("phone")) ? "" : userMap.get("phone").toString());
+
             return chain.filter(exchange);
         }catch (Exception e){
             log.error("token认证失败");

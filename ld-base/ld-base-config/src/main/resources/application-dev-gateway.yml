@@ -8,14 +8,27 @@ spring:
             allowedOrigins: "*"
             allowedMethods: "*"
             allowedHeaders: "*"
+      default-filters:
+        - name: IpRequestRateLimiter
+          args:
+            key-resolver: "#{@ipKeyResolver}"
+            redis-rate-limiter.replenishRate: 10 #字段为令牌桶恢复速度，即每秒访问个数
+            redis-rate-limiter.burstCapacity: 40 #字段为令牌桶大小，即峰值流量来临时最大可访问数
+            #每秒产生10个，最大每秒处理40个请求
       routes:
         - id: ld-lucky
           uri: http://127.0.0.1:7214/
           predicates:
-            - Path=/bld-lucky/**
+            - Path=/ld-lucky/**
           filters:
             # 1表示过滤一个路径
             - StripPrefix=1
+#            - name: IpRequestRateLimiter #请求数限流 名字不能随便写
+#              args:
+#                key-resolver: "#{@ipKeyResolver}"
+#                redis-rate-limiter.replenishRate: 1 #字段为令牌桶恢复速度，即每秒访问个数
+#                redis-rate-limiter.burstCapacity: 1 #字段为令牌桶大小，即峰值流量来临时最大可访问数
+
 
 # 忽略 url 拦截
 ld:jwt-token-global-filter:

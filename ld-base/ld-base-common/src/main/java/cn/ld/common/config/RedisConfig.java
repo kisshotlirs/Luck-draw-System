@@ -34,8 +34,10 @@ import java.time.Duration;
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
-    // 这是缓存有效期 一天
-    private Duration timeToLive = Duration.ofDays(1);
+    /**
+     * 这是缓存有效期 一天
+     */
+    private final Duration timeToLive = Duration.ofDays(1);
 
     /**
      * 配置Jackson2JsonRedisSerializer序列化策略

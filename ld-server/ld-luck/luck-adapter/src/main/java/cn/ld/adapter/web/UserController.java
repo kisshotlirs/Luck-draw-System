@@ -7,6 +7,7 @@ import cn.ld.client.dto.data.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.client.dto.query.UserLoginQuery;
 import cn.ld.common.annotation.ResponseResult;
+import cn.ld.config.util.SecurityUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,9 @@ public class UserController {
 
     @GetMapping("/one")
     public UserVO getOne(@RequestParam("id") Long id){
+
+        System.out.println(SecurityUtil.getUserName());
+
         return userService.getOne(id);
     }
 
