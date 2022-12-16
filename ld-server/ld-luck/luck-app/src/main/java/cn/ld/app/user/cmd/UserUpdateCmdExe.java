@@ -1,8 +1,8 @@
-package cn.ld.app.user.command;
+package cn.ld.app.user.cmd;
 
 import cn.ld.app.assembler.UserAssembler;
 import cn.ld.client.dto.cmd.UserUpdateCmd;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
 import lombok.AllArgsConstructor;

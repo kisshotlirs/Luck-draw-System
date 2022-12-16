@@ -7,7 +7,7 @@ import cn.ld.domain.user.PassWord;
 import java.time.LocalDateTime;
 
 import cn.ld.client.dto.cmd.UserRegisterCmd;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.domain.user.UserEntity;
 
 import static cn.ld.domain.user.PassWord.getEncryptPassword;

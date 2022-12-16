@@ -1,9 +1,9 @@
-package cn.ld.app.user.command;
+package cn.ld.app.user.cmd;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.app.assembler.UserAssembler;
 import cn.ld.client.dto.cmd.UserRegisterCmd;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
 import com.alibaba.cola.exception.SysException;

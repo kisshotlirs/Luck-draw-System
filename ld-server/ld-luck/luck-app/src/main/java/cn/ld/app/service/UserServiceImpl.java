@@ -1,14 +1,14 @@
 package cn.ld.app.service;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.ld.app.user.command.UserRegisterCmdExe;
-import cn.ld.app.user.command.UserUpdateCmdExe;
+import cn.ld.app.user.cmd.UserRegisterCmdExe;
+import cn.ld.app.user.cmd.UserUpdateCmdExe;
 import cn.ld.app.user.query.UserListByParamQueryExe;
 import cn.ld.app.user.query.UserLoginQueryExe;
 import cn.ld.client.api.UserService;
 import cn.ld.client.dto.cmd.UserRegisterCmd;
 import cn.ld.client.dto.cmd.UserUpdateCmd;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.client.dto.query.UserLoginQuery;
 import cn.ld.config.exception.ldException;
@@ -17,9 +17,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
 import java.util.Map;
 
 /**

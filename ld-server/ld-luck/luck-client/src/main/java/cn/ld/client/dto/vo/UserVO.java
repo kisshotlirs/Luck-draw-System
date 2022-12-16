@@ -1,4 +1,4 @@
-package cn.ld.client.dto.data;
+package cn.ld.client.dto.vo;
 
 import lombok.Data;
 

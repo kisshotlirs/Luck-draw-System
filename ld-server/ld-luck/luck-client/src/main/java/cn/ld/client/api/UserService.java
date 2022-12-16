@@ -2,7 +2,7 @@ package cn.ld.client.api;
 
 import cn.ld.client.dto.cmd.UserRegisterCmd;
 import cn.ld.client.dto.cmd.UserUpdateCmd;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.client.dto.query.UserLoginQuery;
 import com.baomidou.mybatisplus.core.metadata.IPage;

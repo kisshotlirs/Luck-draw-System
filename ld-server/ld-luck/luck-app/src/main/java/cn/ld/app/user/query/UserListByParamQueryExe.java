@@ -1,7 +1,7 @@
 package cn.ld.app.user.query;
 
 import cn.ld.app.assembler.UserAssembler;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
@@ -9,9 +9,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author mojo

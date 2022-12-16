@@ -1,7 +1,7 @@
 package cn.ld.adapter.web.admin;
 
 import cn.ld.client.api.UserService;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.common.annotation.ResponseResult;
 import com.baomidou.mybatisplus.core.metadata.IPage;

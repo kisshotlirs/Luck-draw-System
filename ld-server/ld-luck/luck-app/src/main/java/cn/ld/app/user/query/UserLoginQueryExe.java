@@ -1,7 +1,7 @@
 package cn.ld.app.user.query;
 
 import cn.ld.app.assembler.UserAssembler;
-import cn.ld.client.dto.data.UserVO;
+import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserLoginQuery;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
