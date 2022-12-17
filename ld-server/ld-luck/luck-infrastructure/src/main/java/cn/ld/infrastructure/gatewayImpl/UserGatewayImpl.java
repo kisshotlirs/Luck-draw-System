@@ -68,7 +68,7 @@ public class UserGatewayImpl implements UserGateway {
 
     @Override
     public IPage<UserEntity> listByQuery(UserListByParamQuery query) {
-        IPage<UserDB> userDBIPage = userMapper.liatByQuery(new Page<UserEntity>(query.getPageIndex(), query.getPageSize()), query);
+        IPage<UserDB> userDBIPage = userMapper.listByQuery(new Page<UserEntity>(query.getPageIndex(), query.getPageSize()), query);
         return userDBIPage.convert(UserConvertor::toUserEntity);
     }
 }

@@ -1,8 +1,10 @@
 package cn.ld.app.prize.query;
 
+import cn.ld.app.assembler.PrizeAssembler;
 import cn.ld.client.dto.query.PrizeListQuery;
 import cn.ld.client.dto.vo.PrizeVO;
 import cn.ld.domain.gateway.PrizeGateWay;
+import cn.ld.domain.prize.PrizeEntity;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +22,9 @@ public class PrizeListQueryExe {
 
     private final PrizeGateWay prizeGateWay;
 
-    public static IPage<PrizeVO> execute(PrizeListQuery query) {
-        return null;
+    public IPage<PrizeVO> execute(PrizeListQuery query) {
+        IPage<PrizeEntity> page = prizeGateWay.page(query);
+
+        return page.convert(PrizeAssembler::toPrizeVO);
     }
 }

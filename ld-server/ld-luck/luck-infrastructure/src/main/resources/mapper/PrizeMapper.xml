@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.ld.infrastructure.database.mapper.PrizeMapper">
 
-    <resultMap id="BaseResultMap" type="cn.ld.user.po.Prize">
+    <resultMap id="BaseResultMap" type="cn.ld.infrastructure.database.dataObject.PrizeDB">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="prizeName" column="prize_name" jdbcType="VARCHAR"/>
             <result property="inventory" column="inventory" jdbcType="INTEGER"/>
@@ -19,6 +19,22 @@
     <sql id="Base_Column_List">
         id,prize_name,inventory,
         money,type,create_time,
-        cretor,update_time,updater
+        creator,update_time,updater
     </sql>
+
+    <select id="page" resultType="cn.ld.infrastructure.database.dataObject.PrizeDB">
+        select * from ld_prize p
+        <where>
+            <if test="query.id!=null">
+                and p.id=#{query.id}
+            </if>
+            <if test=" query.prizeName! = '' and query.prizeName !=null ">
+                and p.prize_name like concat('%',#{query.prizeName},'%')
+            </if>
+            <if test=" query.type! = null and query.type !='' ">
+                and p.type=#{query.type}
+            </if>
+        </where>
+    </select>
+
 </mapper>

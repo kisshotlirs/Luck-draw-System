@@ -24,7 +24,7 @@ public interface UserMapper extends BaseMapper<UserDB> {
     /**
      * 分页查询用户
      */
-    IPage<UserDB> liatByQuery(@Param("page") Page<UserEntity> userEntityPage,@Param("query") UserListByParamQuery query);
+    IPage<UserDB> listByQuery(@Param("page") Page<UserEntity> userEntityPage,@Param("query") UserListByParamQuery query);
 }
 
 

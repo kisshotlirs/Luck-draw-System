@@ -34,7 +34,7 @@
         </where>
     </select>
 
-    <select id="liatByQuery" resultType="cn.ld.infrastructure.database.dataObject.UserDB">
+    <select id="listByQuery" resultType="cn.ld.infrastructure.database.dataObject.UserDB">
         select * from ld_user u
         <where>
             <if test="query.id!=null">

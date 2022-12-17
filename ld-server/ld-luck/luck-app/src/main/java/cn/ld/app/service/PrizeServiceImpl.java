@@ -38,7 +38,7 @@ public class PrizeServiceImpl implements PrizeService {
 
     @Override
     public IPage<PrizeVO> page(PrizeListQuery query) {
-        return PrizeListQueryExe.execute(query);
+        return prizeListQueryExe.execute(query);
     }
 
     @Override
