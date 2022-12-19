@@ -1,6 +1,5 @@
 package cn.ld.infrastructure.convertor;
-import cn.ld.domain.rule.MaxNumber;
-import java.time.LocalDateTime;
+import cn.ld.domain.rule.MinNumber;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.domain.rule.RuleEntity;
@@ -31,8 +30,8 @@ public class RuleConvertor {
         RuleEntity ruleEntity = new RuleEntity();
         ruleEntity.setId(ruleDB.getId());
         ruleEntity.setRuleName(ruleDB.getRuleName());
-        ruleEntity.setMaxJoinNumber(new MaxNumber(ruleDB.getMaxJoinNumber()));
-        ruleEntity.setMaxWinningNumber(new MaxNumber(ruleDB.getMaxWinningNumber()));
+        ruleEntity.setMaxJoinNumber(new MinNumber(ruleDB.getMaxJoinNumber()));
+        ruleEntity.setMaxWinningNumber(new MinNumber(ruleDB.getMaxWinningNumber()));
         ruleEntity.setCreateTime(ruleDB.getCreateTime());
         ruleEntity.setCreator(ruleDB.getCreator());
         ruleEntity.setUpdateTime(ruleDB.getUpdateTime());

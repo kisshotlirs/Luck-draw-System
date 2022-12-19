@@ -1,8 +1,7 @@
 package cn.ld.app.assembler;
-import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.cmd.RuleUpdateCmd;
 import cn.ld.config.util.SecurityUtil;
-import cn.ld.domain.rule.MaxNumber;
+import cn.ld.domain.rule.MinNumber;
 import java.time.LocalDateTime;
 
 import cn.ld.client.dto.cmd.RuleAddCmd;
@@ -19,8 +18,8 @@ public class RuleAssembler {
     public static RuleEntity toAddEntity(RuleAddCmd cmd) {
         RuleEntity ruleEntity = new RuleEntity();
         ruleEntity.setRuleName(cmd.getRuleName());
-        ruleEntity.setMaxJoinNumber(new MaxNumber(cmd.getMaxJoinNumber()));
-        ruleEntity.setMaxWinningNumber(new MaxNumber(cmd.getMaxWinningNumber()));
+        ruleEntity.setMaxJoinNumber(new MinNumber(cmd.getMaxJoinNumber()));
+        ruleEntity.setMaxWinningNumber(new MinNumber(cmd.getMaxWinningNumber()));
         ruleEntity.setCreateTime(LocalDateTime.now());
         ruleEntity.setCreator(SecurityUtil.getName());
         ruleEntity.setUpdateTime(LocalDateTime.now());
@@ -45,8 +44,8 @@ public class RuleAssembler {
         RuleEntity ruleEntity = new RuleEntity();
         ruleEntity.setId(cmd.getId());
         ruleEntity.setRuleName(cmd.getRuleName());
-        ruleEntity.setMaxJoinNumber(new MaxNumber(cmd.getMaxJoinNumber()));
-        ruleEntity.setMaxWinningNumber(new MaxNumber(cmd.getMaxWinningNumber()));
+        ruleEntity.setMaxJoinNumber(new MinNumber(cmd.getMaxJoinNumber()));
+        ruleEntity.setMaxWinningNumber(new MinNumber(cmd.getMaxWinningNumber()));
         ruleEntity.setCreateTime(LocalDateTime.now());
         ruleEntity.setCreator(SecurityUtil.getName());
         ruleEntity.setUpdateTime(LocalDateTime.now());

@@ -9,13 +9,13 @@ import lombok.Data;
  * @date 2022/12/17 0017 16:28
  */
 @Data
-public class MaxNumber {
+public class MinNumber {
 
     private Integer number;
 
-    public MaxNumber(Integer number) {
+    public MinNumber(Integer number) {
         if (number<1){
-            throw new ldException("规则次数必须大于等于1！");
+            throw new ldException("规则数量必须大于等于1！");
         }
         this.number = number;
     }
