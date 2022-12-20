@@ -1,12 +1,10 @@
 package cn.ld.gateway.fliter;
 
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdException;
 import cn.ld.config.util.JwtUtil;
-import cn.ld.config.util.SecurityUtil;
 import cn.ld.config.vo.FailInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -121,7 +119,7 @@ public class JwtTokenGlobalFilter implements GlobalFilter {
      */
     private Boolean ignore(String url,String ignoreUrl){
         if (StringUtils.isBlank(url)){
-            throw new ldException("请求url有误");
+            throw new LdException("请求url有误");
         }
         return url.contains(ignoreUrl);
     }

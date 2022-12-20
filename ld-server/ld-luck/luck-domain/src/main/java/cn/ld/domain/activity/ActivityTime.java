@@ -1,8 +1,7 @@
 package cn.ld.domain.activity;
 
-import cn.hutool.core.util.ObjectUtil;
-import cn.ld.config.exception.ldException;
-import lombok.Data;
+import cn.ld.config.exception.LdCodeException;
+import cn.ld.config.exception.LdException;
 import lombok.Getter;
 import org.apache.commons.lang3.ObjectUtils;
 
@@ -28,10 +27,11 @@ public class ActivityTime {
 
     public ActivityTime(LocalDateTime startTime, LocalDateTime endTime) {
         if (ObjectUtils.anyNull(startTime,endTime)){
-            throw new ldException("活动时间不为空");
+            throw new LdException("活动时间不为空");
         }
         if (startTime.isAfter(endTime)){
-            throw new ldException("活动时间非法");
+            //throw new ldException("活动时间非法");
+            throw new LdCodeException(5050,"活动时间非法");
         }
         this.startTime = startTime;
         this.endTime = endTime;

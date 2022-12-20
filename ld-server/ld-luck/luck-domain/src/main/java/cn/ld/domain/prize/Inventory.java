@@ -1,6 +1,6 @@
 package cn.ld.domain.prize;
 
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdException;
 import lombok.Data;
 
 /**
@@ -15,7 +15,7 @@ public class Inventory {
 
     public Inventory(Integer inventory) {
         if (inventory < 0){
-            throw new ldException("库存数量有误，请大于等于0");
+            throw new LdException("库存数量有误，请大于等于0");
         }
         this.inventory = inventory;
     }

@@ -2,6 +2,8 @@ package cn.ld.infrastructure.gatewayImpl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.UserListByParamQuery;
+import cn.ld.config.enums.LdExceptionEnum;
+import cn.ld.config.util.Assertutil;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
 import cn.ld.infrastructure.convertor.UserConvertor;
@@ -38,10 +40,7 @@ public class UserGatewayImpl implements UserGateway {
 
     private UserEntity updateUser(UserEntity entity) {
         UserDB userDB = UserConvertor.toUserDB(entity);
-        int result = userMapper.updateById(userDB);
-        if (result<=0){
-            throw new SysException("用户信息更新失败");
-        }
+        Assertutil.isTrue(userMapper.updateById(userDB)!=1, LdExceptionEnum.UPDATE_ERROR.getDescription());
         return UserConvertor.toUserEntity(userDB);
     }
 
@@ -50,10 +49,7 @@ public class UserGatewayImpl implements UserGateway {
      */
     private UserEntity addUser(UserEntity entity) {
         UserDB userDB = UserConvertor.toUserDB(entity);
-        int insert = userMapper.insert(userDB);
-        if (insert<=0){
-            throw new SysException("用户注册失败");
-        }
+        Assertutil.isFalse(userMapper.insert(userDB)==1,LdExceptionEnum.ADD_ERROR.getDescription());
         return UserConvertor.toUserEntity(userDB);
     }
 

@@ -2,12 +2,12 @@ package cn.ld.infrastructure.gatewayImpl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.RuleListQuery;
-import cn.ld.config.exception.ldException;
+import cn.ld.config.enums.LdExceptionEnum;
+import cn.ld.config.util.Assertutil;
 import cn.ld.domain.gateway.RuleGateWay;
 import cn.ld.domain.rule.RuleEntity;
 import cn.ld.infrastructure.convertor.RuleConvertor;
 import cn.ld.infrastructure.database.dataObject.RuleDB;
-import cn.ld.infrastructure.database.dataObject.UserDB;
 import cn.ld.infrastructure.database.mapper.RuleMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -35,19 +35,13 @@ public class RuleGateWayImpl implements RuleGateWay {
 
     private RuleEntity addRule(RuleEntity entity) {
         RuleDB ruleDB = RuleConvertor.toRuleDB(entity);
-        int result = ruleMapper.insert(ruleDB);
-        if (result!=1){
-            throw new ldException("新建抽奖规则失败");
-        }
+        Assertutil.isTrue(ruleMapper.insert(ruleDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
         return RuleConvertor.toEntity(ruleDB);
     }
 
     private RuleEntity updateRule(RuleEntity entity) {
         RuleDB ruleDB = RuleConvertor.toRuleDB(entity);
-        int result = ruleMapper.updateById(ruleDB);
-        if (result!=1){
-            throw new ldException("更新抽奖规则失败");
-        }
+        Assertutil.isTrue(ruleMapper.updateById(ruleDB)!=1,LdExceptionEnum.UPDATE_ERROR.getDescription());
         return RuleConvertor.toEntity(ruleDB);
     }
 

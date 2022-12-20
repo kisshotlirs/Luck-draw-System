@@ -1,6 +1,6 @@
 package cn.ld.domain.award;
 
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdException;
 import lombok.Data;
 
 /**
@@ -15,7 +15,7 @@ public class AwardNumber {
 
     public AwardNumber(Integer number) {
         if (number<0){
-            throw new ldException("奖项数量不合法，需要大于等于0");
+            throw new LdException("奖项数量不合法，需要大于等于0");
         }
         this.number = number;
     }

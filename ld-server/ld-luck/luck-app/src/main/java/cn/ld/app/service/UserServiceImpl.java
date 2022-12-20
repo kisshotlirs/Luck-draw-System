@@ -11,7 +11,7 @@ import cn.ld.client.dto.cmd.UserUpdateCmd;
 import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.client.dto.query.UserLoginQuery;
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdException;
 import cn.ld.config.util.JwtUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
         query.setId(id);
         IPage<UserVO> page = userListByParamQueryExe.execute(query);
         if (CollectionUtil.isEmpty(page.getRecords())){
-            throw new ldException("该用户不存在");
+            throw new LdException("该用户不存在");
         }
         return page.getRecords().get(0);
     }

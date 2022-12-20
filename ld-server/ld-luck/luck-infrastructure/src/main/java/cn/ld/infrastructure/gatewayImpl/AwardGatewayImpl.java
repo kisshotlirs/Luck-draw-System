@@ -2,8 +2,8 @@ package cn.ld.infrastructure.gatewayImpl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.AwardListQuery;
-import cn.ld.client.dto.vo.AwardVO;
-import cn.ld.config.exception.ldException;
+import cn.ld.config.enums.LdExceptionEnum;
+import cn.ld.config.util.Assertutil;
 import cn.ld.domain.award.AwardEntity;
 import cn.ld.domain.gateway.AwardGateWay;
 import cn.ld.infrastructure.convertor.AwardConvertor;
@@ -35,19 +35,13 @@ public class AwardGatewayImpl implements AwardGateWay {
 
     private AwardEntity addAward(AwardEntity entity) {
         AwardDB awardDB = AwardConvertor.toAddDB(entity);
-        int result = awardMapper.insert(awardDB);
-        if (result!=1){
-            throw new ldException("奖项插入失败");
-        }
+        Assertutil.isTrue(awardMapper.insert(awardDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
         return AwardConvertor.toEntity(awardDB);
     }
 
     private AwardEntity updateAward(AwardEntity entity) {
         AwardDB awardDB = AwardConvertor.toUpdateDB(entity);
-        int result = awardMapper.updateById(awardDB);
-        if (result!=1){
-            throw new ldException("奖项更新失败");
-        }
+        Assertutil.isFalse(awardMapper.updateById(awardDB)==1,LdExceptionEnum.UPDATE_ERROR.getDescription());
         return AwardConvertor.toEntity(awardDB);
     }
 

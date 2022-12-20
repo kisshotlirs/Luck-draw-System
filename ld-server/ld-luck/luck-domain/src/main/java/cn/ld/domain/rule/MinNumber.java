@@ -1,6 +1,6 @@
 package cn.ld.domain.rule;
 
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdException;
 import lombok.Data;
 
 /**
@@ -15,7 +15,7 @@ public class MinNumber {
 
     public MinNumber(Integer number) {
         if (number<1){
-            throw new ldException("规则数量必须大于等于1！");
+            throw new LdException("规则数量必须大于等于1！");
         }
         this.number = number;
     }

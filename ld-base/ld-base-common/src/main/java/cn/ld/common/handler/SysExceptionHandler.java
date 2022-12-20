@@ -1,7 +1,8 @@
 package cn.ld.common.handler;
 
 import cn.ld.config.exception.AuthException;
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdCodeException;
+import cn.ld.config.exception.LdException;
 import cn.ld.config.vo.FailInfo;
 import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import lombok.extern.slf4j.Slf4j;
@@ -45,22 +46,22 @@ public class SysExceptionHandler {
     /**
      * 自定义异常
      */
-    @ExceptionHandler(value = ldException.class)
-    public FailInfo sysException(Exception ex) {
+    @ExceptionHandler(value = LdException.class)
+    public FailInfo sysException(LdException ex) {
         log.error("Exception_info:{}", ex.getMessage());
         log.error("Exception_info:", ex);
         return FailInfo.builder().exception(ex.getMessage()).build();
     }
 
     @ExceptionHandler(value = MysqlDataTruncation.class)
-    public FailInfo mysqlDataTruncation(Exception ex) {
+    public FailInfo mysqlDataTruncation(MysqlDataTruncation ex) {
         log.error("Exception_info:{}", ex.getMessage());
         log.error("Exception_info:", ex);
         return new FailInfo(500, ex.getMessage());
     }
 
     @ExceptionHandler(value = DataIntegrityViolationException.class)
-    public FailInfo dataIntegrityViolationException(Exception ex) {
+    public FailInfo dataIntegrityViolationException(DataIntegrityViolationException ex) {
         log.error("Exception_info:{}", ex.getMessage());
         log.error("Exception_info:", ex);
         String message = ex.getMessage();
@@ -81,10 +82,17 @@ public class SysExceptionHandler {
      * 权限认证异常
      */
     @ExceptionHandler(value = AuthException.class)
-    public FailInfo authException(Exception ex) {
+    public FailInfo authException(AuthException ex) {
         log.error("Exception_info:{}", ex.getMessage());
         log.error("Exception_info:", ex);
         return FailInfo.builder().exception(ex.getMessage()).build();
+    }
+
+    @ExceptionHandler(value = LdCodeException.class)
+    public FailInfo ldCodeException(LdCodeException ex) {
+        log.error("Exception_info:{}", ex.getMessage());
+        log.error("Exception_info:", ex);
+        return new FailInfo(ex.getCode(), ex.getMessage());
     }
 
 }

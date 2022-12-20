@@ -15,8 +15,8 @@ import lombok.ToString;
 @Getter
 public class FailInfo extends ResultInfo{
 
-    protected static final Integer DEFAULT_CODE = 50000;
-    protected static final String DEFAULT_MESSAGE = "操作失败";
+    public static final Integer DEFAULT_CODE = 50000;
+    public static final String DEFAULT_MESSAGE = "操作失败";
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String exception;

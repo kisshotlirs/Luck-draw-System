@@ -2,7 +2,8 @@ package cn.ld.infrastructure.gatewayImpl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.PrizeListQuery;
-import cn.ld.config.exception.ldException;
+import cn.ld.config.enums.LdExceptionEnum;
+import cn.ld.config.util.Assertutil;
 import cn.ld.domain.gateway.PrizeGateWay;
 import cn.ld.domain.prize.PrizeEntity;
 import cn.ld.infrastructure.convertor.PrizeConvertor;
@@ -36,19 +37,13 @@ public class PrizeGateWayImpl implements PrizeGateWay {
 
     private PrizeEntity updatePrize(PrizeEntity entity) {
         PrizeDB prizeDB = PrizeConvertor.toPrizeDB(entity);
-        int result = prizeMapper.updateById(prizeDB);
-        if (result!=1){
-            throw new ldException("更新奖品信息失败！");
-        }
+        Assertutil.isTrue(prizeMapper.updateById(prizeDB)!=1, LdExceptionEnum.UPDATE_ERROR.getDescription());
         return PrizeConvertor.toPrizeEntity(prizeDB);
     }
 
     private PrizeEntity addPrize(PrizeEntity entity) {
         PrizeDB prizeDB = PrizeConvertor.toPrizeDB(entity);
-        int result = prizeMapper.insert(prizeDB);
-        if (result!=1){
-            throw new ldException("新增奖品信息失败！");
-        }
+        Assertutil.isTrue(prizeMapper.insert(prizeDB)!=1,LdExceptionEnum.ADD_ERROR.getDescription());
         return PrizeConvertor.toPrizeEntity(prizeDB);
     }
 

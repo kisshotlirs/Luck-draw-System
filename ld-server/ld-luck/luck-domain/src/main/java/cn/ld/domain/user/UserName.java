@@ -1,7 +1,7 @@
 package cn.ld.domain.user;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.ld.config.exception.ldException;
+import cn.ld.config.exception.LdException;
 import lombok.Getter;
 
 /**
@@ -19,7 +19,7 @@ public class UserName {
 
     public UserName(String username) {
         if (ObjectUtil.isNull(username)){
-            throw new ldException("账号不能为空");
+            throw new LdException("账号不能为空");
         }
         this.username = username;
     }
