@@ -23,14 +23,22 @@
     </sql>
 
     <select id="page" resultType="cn.ld.infrastructure.database.dataObject.AwardDB">
-        select * from ld_award a
+        select a.* from ld_award a
+        left join ld_activity ba on a.activityId=ba.id
         <where>
             <if test="query.id!=null">
-                a.id=#{query.id}
+                and a.id=#{query.id}
             </if>
             <if test="query.activity!=null">
-                a.id=#{query.id}
+                and a.activityId=#{query.activityId}
+            </if>
+            <if test="query.activityName!=null and query.activityName!=''">
+                and ba.activityName like concat('%',#{query.activityName},'%')
+            </if>
+            <if test="query.awardName!=null and query.awardName!=''">
+                and a.awardName like concat('%',#{query.awardName},'%')
             </if>
         </where>
     </select>
+
 </mapper>

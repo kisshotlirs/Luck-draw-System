@@ -19,6 +19,8 @@ public class AwardVO {
      */
     private Long prizeId;
 
+    private Long activityId;
+
     /**
      * 数量
      */

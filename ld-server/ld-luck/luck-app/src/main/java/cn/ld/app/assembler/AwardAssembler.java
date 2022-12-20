@@ -19,6 +19,7 @@ public class AwardAssembler {
     public static AwardEntity toAddEntity(AwardAddCmd cmd) {
         AwardEntity entity = new AwardEntity();
         entity.setPrizeId(cmd.getPrizeId());
+        entity.setActivityId(cmd.getActivityId());
         entity.setNumber(new AwardNumber(cmd.getNumber()));
         entity.setAwardName(cmd.getAwardName());
         entity.setProbability(cmd.getProbability());
@@ -34,6 +35,7 @@ public class AwardAssembler {
         if (ObjectUtil.isNotNull(entity.getId())){
             awardVO.setId(entity.getId());
         }
+        awardVO.setActivityId(entity.getActivityId());
         awardVO.setPrizeId(entity.getPrizeId());
         awardVO.setNumber(entity.getNumber().getNumber());
         awardVO.setAwardName(entity.getAwardName());
@@ -49,6 +51,7 @@ public class AwardAssembler {
         AwardEntity entity = new AwardEntity();
         entity.setId(cmd.getId());
         entity.setPrizeId(cmd.getPrizeId());
+        entity.setActivityId(cmd.getActivityId());
         entity.setNumber(new AwardNumber(cmd.getNumber()));
         entity.setAwardName(cmd.getAwardName());
         entity.setProbability(cmd.getProbability());

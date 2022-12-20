@@ -21,6 +21,9 @@ public class AwardAddCmd extends Command {
     @NotNull(message = "奖品id不为空")
     private Long prizeId;
 
+    @NotNull(message = "活动id不为空")
+    private Long activityId;
+
     /**
      * 数量
      */

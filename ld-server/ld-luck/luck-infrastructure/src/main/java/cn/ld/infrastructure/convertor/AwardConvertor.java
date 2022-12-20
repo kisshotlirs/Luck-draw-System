@@ -15,6 +15,7 @@ public class AwardConvertor {
     public static AwardDB toAddDB(AwardEntity entity) {
         AwardDB awardDB = new AwardDB();
         awardDB.setPrizeId(entity.getPrizeId());
+        awardDB.setActivityId(entity.getActivityId());
         awardDB.setNumber(entity.getNumber().getNumber());
         awardDB.setAwardName(entity.getAwardName());
         awardDB.setProbability(entity.getProbability());
@@ -30,6 +31,7 @@ public class AwardConvertor {
         if (ObjectUtil.isNotNull(awardDB.getId())){
             entity.setId(awardDB.getId());
         }
+        entity.setActivityId(awardDB.getActivityId());
         entity.setPrizeId(awardDB.getPrizeId());
         entity.setNumber(new AwardNumber(awardDB.getNumber()));
         entity.setAwardName(awardDB.getAwardName());
@@ -45,6 +47,7 @@ public class AwardConvertor {
         AwardDB awardDB = new AwardDB();
         awardDB.setId(entity.getId());
         awardDB.setPrizeId(entity.getPrizeId());
+        awardDB.setActivityId(awardDB.getActivityId());
         awardDB.setNumber(entity.getNumber().getNumber());
         awardDB.setAwardName(entity.getAwardName());
         awardDB.setProbability(entity.getProbability());

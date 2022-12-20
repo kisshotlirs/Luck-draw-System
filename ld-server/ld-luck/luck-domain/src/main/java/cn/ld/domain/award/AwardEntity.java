@@ -22,6 +22,8 @@ public class AwardEntity {
      */
     private Long prizeId;
 
+    private Long activityId;
+
     /**
      * 数量
      */
