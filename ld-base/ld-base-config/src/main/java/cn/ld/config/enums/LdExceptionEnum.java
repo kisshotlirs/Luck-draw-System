@@ -12,7 +12,8 @@ import lombok.Getter;
 public enum LdExceptionEnum {
 
     ADD_ERROR(FailInfo.DEFAULT_CODE,"保存数据失败"),
-    UPDATE_ERROR(FailInfo.DEFAULT_CODE,"修改数据失败");
+    UPDATE_ERROR(FailInfo.DEFAULT_CODE,"修改数据失败"),
+    DELETE_ERROR(FailInfo.DEFAULT_CODE,"删除数据失败");
 
     private Integer code;
     private String description;

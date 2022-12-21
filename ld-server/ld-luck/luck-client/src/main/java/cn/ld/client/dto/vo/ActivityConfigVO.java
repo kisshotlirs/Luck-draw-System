@@ -2,6 +2,8 @@ package cn.ld.client.dto.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author mojo
  * @description: TODO
@@ -10,5 +12,10 @@ import lombok.Data;
 @Data
 public class ActivityConfigVO {
 
+    private ActivityVO activityVO;
+
+    private List<RuleVO> ruleVOList;
+
+    private AwardVO awardVO;
 
 }

@@ -27,6 +27,12 @@
             <if test="query.id!=null">
                 and r.id=#{query.id}
             </if>
+            <if test="query.ids!=null and query.ids.size()!=0">
+                 and r.id in
+                 <foreach collection="query.ids" separator="," open="(" close=")" item="id">
+                     #{id}
+                 </foreach>
+            </if>
             <if test="query.ruleName!=null">
                 and r.rule_name like concat('%',#{query.ruleName},'%')
             </if>

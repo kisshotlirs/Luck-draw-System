@@ -1,12 +1,19 @@
 package cn.ld.app.activity.cmd;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.ld.app.assembler.ActivityAssembler;
 import cn.ld.client.dto.cmd.ActivityAddCmd;
 import cn.ld.client.dto.vo.ActivityVO;
+import cn.ld.config.exception.LdException;
 import cn.ld.domain.activity.ActivityEntity;
+import cn.ld.domain.activityRule.ActivityRuleEntity;
 import cn.ld.domain.gateway.ActivityGateWay;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author mojo
