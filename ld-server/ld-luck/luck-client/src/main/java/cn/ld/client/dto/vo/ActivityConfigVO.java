@@ -18,4 +18,6 @@ public class ActivityConfigVO {
 
     private AwardVO awardVO;
 
+    private List<AwardVO> awardVOList;
+
 }

@@ -61,4 +61,14 @@ public class AwardAssembler {
         entity.setUpdater(SecurityUtil.getName());
         return entity;
     }
+
+    public static AwardAddCmd toAddCmd(AwardVO awardVO) {
+        AwardAddCmd cmd = new AwardAddCmd();
+        cmd.setPrizeId(awardVO.getPrizeId());
+        cmd.setActivityId(awardVO.getActivityId());
+        cmd.setNumber(awardVO.getNumber());
+        cmd.setAwardName(awardVO.getAwardName());
+        cmd.setProbability(awardVO.getProbability());
+        return cmd;
+    }
 }

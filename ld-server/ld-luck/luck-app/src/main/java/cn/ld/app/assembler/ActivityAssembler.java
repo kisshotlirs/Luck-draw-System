@@ -57,4 +57,13 @@ public class ActivityAssembler {
         entity.setUpdater(SecurityUtil.getName());
         return entity;
     }
+
+    public static ActivityAddCmd toAddCmd(ActivityVO activityVO) {
+        ActivityAddCmd cmd = new ActivityAddCmd();
+        cmd.setActivityName(activityVO.getActivityName());
+        cmd.setStartTime(activityVO.getStartTime());
+        cmd.setEndTime(activityVO.getEndTime());
+        cmd.setDescribe(activityVO.getDescribe());
+        return cmd;
+    }
 }

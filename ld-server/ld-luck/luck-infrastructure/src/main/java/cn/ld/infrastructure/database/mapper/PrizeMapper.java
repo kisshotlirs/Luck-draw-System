@@ -16,6 +16,13 @@ import org.apache.ibatis.annotations.Param;
 public interface PrizeMapper extends BaseMapper<PrizeDB> {
 
     IPage<PrizeDB> page(@Param("page") Page<PrizeDB> prizeDBPage,@Param("query") PrizeListQuery query);
+
+    /**
+     * 扣减奖品数量
+     * @param prizeId 奖品id
+     * @param number 扣减数量
+     */
+    int reduceInventory(@Param("prizeId") Long prizeId, @Param("number") Integer number);
 }
 
 

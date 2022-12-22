@@ -52,4 +52,9 @@ public class PrizeGateWayImpl implements PrizeGateWay {
         IPage<PrizeDB> page = prizeMapper.page(new Page<PrizeDB>(query.getPageIndex(), query.getPageIndex()),query);
         return page.convert(PrizeConvertor::toPrizeEntity);
     }
+
+    @Override
+    public int reduceInventory(Long prizeId, Integer number) {
+        return prizeMapper.reduceInventory(prizeId,number);
+    }
 }

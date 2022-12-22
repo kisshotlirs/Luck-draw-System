@@ -15,7 +15,7 @@ public class ActivityRuleDeleteCmdExe {
 
     private final ActivityRuleGateWay activityRuleGateWay;
 
-    private void execute(Long activityId){
+    public void execute(Long activityId){
         activityRuleGateWay.delete(activityId);
     }
 }

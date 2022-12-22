@@ -22,6 +22,12 @@
         creator,update_time,updater
     </sql>
 
+    <update id="reduceInventory">
+        update ld_prize set inventory - #{number}
+        where id=#{prizeId}
+        and (inventory-#{number})>0
+    </update>
+
     <select id="page" resultType="cn.ld.infrastructure.database.dataObject.PrizeDB">
         select * from ld_prize p
         <where>

@@ -1,6 +1,7 @@
 package cn.ld.client.dto.cmd;
 
 import com.alibaba.cola.dto.Command;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,12 +27,14 @@ public class ActivityAddCmd extends Command {
      * 开始时间
      */
     @NotNull(message = "活动开始时间不为空")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
 
     /**
      * 结束时间
      */
     @NotNull(message = "活动结束结束时间不为空")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTime;
 
     /**

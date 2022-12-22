@@ -1,20 +1,18 @@
-package cn.ld.client.dto.cmd;
+package cn.ld.client.dto.vo;
 
-import cn.ld.client.dto.vo.AwardVO;
-import com.alibaba.cola.dto.Command;
+import cn.ld.client.dto.cmd.ActivityAddCmd;
+import cn.ld.client.dto.cmd.AwardAddCmd;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 /**
  * @author mojo
  * @description: TODO
- * @date 2022/12/21 0021 15:03
+ * @date 2022/12/22 0022 21:21
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class ActivityConfigAddCmd extends Command {
+public class ActivityConfigCopyVO {
 
     private ActivityAddCmd activityAddCmd;
 

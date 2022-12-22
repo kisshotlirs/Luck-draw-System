@@ -14,6 +14,9 @@ import cn.ld.infrastructure.database.dataObject.AwardDB;
 public class AwardConvertor {
     public static AwardDB toAddDB(AwardEntity entity) {
         AwardDB awardDB = new AwardDB();
+        if (ObjectUtil.isNotNull(entity.getId())){
+            awardDB.setId(entity.getId());
+        }
         awardDB.setPrizeId(entity.getPrizeId());
         awardDB.setActivityId(entity.getActivityId());
         awardDB.setNumber(entity.getNumber().getNumber());

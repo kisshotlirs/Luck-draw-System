@@ -3,8 +3,10 @@ package cn.ld.app.award.cmd;
 import cn.ld.app.assembler.AwardAssembler;
 import cn.ld.client.dto.cmd.AwardUpdateCmd;
 import cn.ld.client.dto.vo.AwardVO;
+import cn.ld.config.util.Assertutil;
 import cn.ld.domain.award.AwardEntity;
 import cn.ld.domain.gateway.AwardGateWay;
+import cn.ld.domain.gateway.PrizeGateWay;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

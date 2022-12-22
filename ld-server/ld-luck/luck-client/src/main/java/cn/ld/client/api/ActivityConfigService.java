@@ -2,6 +2,7 @@ package cn.ld.client.api;
 
 import cn.ld.client.dto.cmd.ActivityConfigAddCmd;
 import cn.ld.client.dto.cmd.ActivityConfigUpdateCmd;
+import cn.ld.client.dto.vo.ActivityConfigCopyVO;
 import cn.ld.client.dto.vo.ActivityConfigVO;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,10 @@ public interface ActivityConfigService {
 
     ActivityConfigVO add(ActivityConfigAddCmd cmd);
 
+    @Deprecated
     ActivityConfigVO update(ActivityConfigUpdateCmd cmd);
 
     ActivityConfigVO getOne(Long id);
+
+    ActivityConfigCopyVO copy(Long id);
 }

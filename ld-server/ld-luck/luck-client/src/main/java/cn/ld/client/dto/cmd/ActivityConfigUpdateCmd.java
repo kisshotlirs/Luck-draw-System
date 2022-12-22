@@ -19,5 +19,5 @@ public class ActivityConfigUpdateCmd extends Command {
 
     private List<Long> ruleIdList;
 
-    private AwardUpdateCmd awardUpdateCmd;
+    private List<AwardUpdateCmd> awardUpdateCmdList;
 }

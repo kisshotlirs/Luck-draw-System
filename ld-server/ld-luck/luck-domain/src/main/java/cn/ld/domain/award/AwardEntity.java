@@ -46,4 +46,11 @@ public class AwardEntity {
     private LocalDateTime updateTime;
 
     private String updater;
+
+    /**
+     * 判断该奖项是否是个奖品，即该奖项是否中奖
+     */
+    public Boolean isPrize(){
+        return !"0".equals(this.prizeId.toString());
+    }
 }
