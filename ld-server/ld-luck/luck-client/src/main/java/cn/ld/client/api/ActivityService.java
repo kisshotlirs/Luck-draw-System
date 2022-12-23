@@ -4,6 +4,7 @@ import cn.ld.client.dto.cmd.ActivityAddCmd;
 import cn.ld.client.dto.cmd.ActivityUpdateCmd;
 import cn.ld.client.dto.query.ActivityListQuery;
 import cn.ld.client.dto.vo.ActivityVO;
+import cn.ld.client.dto.vo.DrawResultVO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,9 @@ public interface ActivityService {
     IPage<ActivityVO> page(ActivityListQuery query);
 
     ActivityVO getOne(Long id);
+
+    /**
+     * 用户抽奖接口
+     */
+    DrawResultVO draw(Long activityId);
 }
