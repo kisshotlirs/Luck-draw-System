@@ -50,4 +50,9 @@ public class AwardGatewayImpl implements AwardGateWay {
         IPage<AwardDB> page = awardMapper.page(new Page<AwardDB>(query.getPageIndex(),query.getPageSize()),query);
         return page.convert(AwardConvertor::toEntity);
     }
+
+    @Override
+    public int deductionAwardNumber(Long awardId, Integer number) {
+        return awardMapper.deductionAwardNumber(awardId,number);
+    }
 }

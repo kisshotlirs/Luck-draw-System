@@ -3,7 +3,7 @@ package cn.ld.app.service;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.ld.app.activity.cmd.ActivityAddCmdExe;
 import cn.ld.app.activity.cmd.ActivityUpdateCmdExe;
-import cn.ld.app.activity.cmd.DrawExe;
+import cn.ld.app.activity.cmd.BaseDrawExe;
 import cn.ld.app.activity.query.ActivityListQueryExe;
 import cn.ld.client.api.ActivityConfigService;
 import cn.ld.client.api.ActivityService;
@@ -33,7 +33,7 @@ public class ActivityServiceImpl implements ActivityService {
     private final ActivityUpdateCmdExe activityUpdateCmdExe;
     private final ActivityListQueryExe activityListQueryExe;
 
-    private final DrawExe drawExe;
+    private final BaseDrawExe drawExe;
     private final ActivityConfigService activityConfigService;
 
     @Override

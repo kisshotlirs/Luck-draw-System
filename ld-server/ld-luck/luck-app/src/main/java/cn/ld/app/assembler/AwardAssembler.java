@@ -71,4 +71,19 @@ public class AwardAssembler {
         cmd.setProbability(awardVO.getProbability());
         return cmd;
     }
+
+    public static AwardEntity toAwardEntity(AwardVO awardVO) {
+        AwardEntity entity = new AwardEntity();
+        entity.setId(awardVO.getId());
+        entity.setPrizeId(awardVO.getPrizeId());
+        entity.setActivityId(awardVO.getActivityId());
+        entity.setNumber(new AwardNumber(awardVO.getNumber()));
+        entity.setAwardName(awardVO.getAwardName());
+        entity.setProbability(awardVO.getProbability());
+        entity.setCreateTime(awardVO.getCreateTime());
+        entity.setCreator(awardVO.getCreator());
+        entity.setUpdateTime(awardVO.getUpdateTime());
+        entity.setUpdater(awardVO.getUpdater());
+        return entity;
+    }
 }

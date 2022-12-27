@@ -15,4 +15,9 @@ public interface AwardGateWay {
     AwardEntity save(AwardEntity entity);
 
     IPage<AwardEntity> page(AwardListQuery query);
+
+    /**
+     * 扣减奖项库存
+     */
+    int deductionAwardNumber(Long awardId, Integer number);
 }

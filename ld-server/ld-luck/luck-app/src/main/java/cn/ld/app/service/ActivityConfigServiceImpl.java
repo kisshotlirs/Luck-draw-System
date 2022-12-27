@@ -15,6 +15,7 @@ import cn.ld.app.assembler.AwardAssembler;
 import cn.ld.app.award.cmd.AwardAddCmdExe;
 import cn.ld.app.award.cmd.AwardUpdateCmdExe;
 import cn.ld.app.award.query.AwardListQueryCmdExe;
+import cn.ld.app.listener.event.ActivityCreateEvent;
 import cn.ld.app.rule.cmd.RuleAddCmdExe;
 import cn.ld.app.rule.cmd.RuleUpdateCmdExe;
 import cn.ld.app.rule.query.RuleListQueryCmdExe;
@@ -29,6 +30,7 @@ import cn.ld.config.util.Assertutil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
+import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +62,9 @@ public class ActivityConfigServiceImpl implements ActivityConfigService {
     private final ActivityRuleListQueryExe activityRuleListQueryExe;
     private final AwardListQueryCmdExe awardListQueryCmdExe;
 
+
+    private final ApplicationEventMulticaster applicationEventMulticaster;
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ActivityConfigVO add(ActivityConfigAddCmd cmd) {
@@ -73,6 +78,11 @@ public class ActivityConfigServiceImpl implements ActivityConfigService {
         activityConfigVO.setActivityVO(activityVO);
         activityConfigVO.setRuleVOList(activityRuleVOList);
         activityConfigVO.setAwardVOList(awardVOList);
+
+        //发送活动创建事件
+        ActivityCreateEvent activityCreateEvent = new ActivityCreateEvent("", activityVO.getId());
+        applicationEventMulticaster.multicastEvent(activityCreateEvent);
+
         return activityConfigVO;
     }
 

@@ -22,6 +22,13 @@
         creator,update_time,updater
     </sql>
 
+    <update id="deductionAwardNumber">
+        update ld_award a
+        set a.number = a.number-#{number}
+        where a.id=#{awardId}
+        and (a.number-#{number})>=0
+    </update>
+
     <select id="page" resultType="cn.ld.infrastructure.database.dataObject.AwardDB">
         select a.* from ld_award a
         left join ld_activity ba on a.activityId=ba.id

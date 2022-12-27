@@ -16,6 +16,8 @@ import org.apache.ibatis.annotations.Param;
 public interface AwardMapper extends BaseMapper<AwardDB> {
 
     IPage<AwardDB> page(@Param("awardDBPage") Page<AwardDB> awardDBPage,@Param("query") AwardListQuery query);
+
+    int deductionAwardNumber(@Param("awardId") Long awardId, @Param("number") Integer number);
 }
 
 
