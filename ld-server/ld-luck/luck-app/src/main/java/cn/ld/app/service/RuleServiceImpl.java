@@ -38,7 +38,7 @@ public class RuleServiceImpl implements RuleService {
 
     @Override
     public IPage<RuleVO> page(RuleListQuery query) {
-        return ruleListQueryCmdExe.page(query);
+        return ruleListQueryCmdExe.execute(query);
     }
 
     @Override

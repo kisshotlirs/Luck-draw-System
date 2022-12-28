@@ -4,8 +4,10 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.WeightRandom;
 import cn.hutool.core.util.RandomUtil;
 import cn.ld.app.assembler.AwardAssembler;
+import cn.ld.app.context.ActivityDrawContext;
 import cn.ld.client.dto.vo.*;
 import cn.ld.config.exception.LdException;
+import cn.ld.config.util.Assertutil;
 import cn.ld.domain.activity.ActivityEntity;
 import cn.ld.domain.activity.ActivityStatusEnum;
 import cn.ld.domain.activity.ActivityTime;
@@ -13,7 +15,10 @@ import cn.ld.domain.award.AwardEntity;
 import cn.ld.domain.gateway.AwardGateWay;
 import cn.ld.domain.gateway.PrizeGateWay;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,28 +29,43 @@ import java.util.stream.Collectors;
  * @description: 默认的 抽奖实现
  * @date 2022/12/27 0027 20:50
  */
+@Slf4j
+@Getter
 @Component
 @AllArgsConstructor
-public class DefaultDrawExe extends BaseDrawExe{
+public abstract class DefaultDrawExe extends BaseDrawExe{
 
     private final AwardGateWay awardGateWay;
 
     private final PrizeGateWay prizeGateWay;
 
+    private TransactionTemplate transactionTemplate;
 
-    @Override
-    protected void addAcceptPrize(Long id, AwardEntity awardEntity) {
+
+    public void addRecord(ActivityDrawContext context) {
         //// TODO: 2022/12/27 0027
     }
 
-    /**
-     * 扣减奖项库存
-     * @param awardId 奖项id
-     * @param number 扣减数量
-     */
     @Override
-    protected int deductionAwardNumber(Long awardId, Integer number) {
-        return awardGateWay.deductionAwardNumber(awardId,number);
+    protected Boolean drawBefore(ActivityDrawContext context) {
+
+        return transactionTemplate.execute(status -> {
+            Boolean success = Boolean.TRUE;
+            try {
+                int update = awardGateWay.deductionAwardNumber(context.getAwardVO().getId(), 1);
+                Assertutil.isTrue(update!=1,"扣减库存失败！");
+                //插入记录
+                addRecord(context);
+            }catch (Exception e){
+                //错误处理
+                status.setRollbackOnly();
+                //回退库存
+                awardGateWay.deductionAwardNumber(context.getAwardVO().getId(), -1);
+                success = Boolean.FALSE;
+                log.error("扣减库存失败或者发送MQ消息失败......",e);
+            }
+            return success;
+        });
     }
 
     @Override
@@ -104,4 +124,5 @@ public class DefaultDrawExe extends BaseDrawExe{
         List<RuleVO> ruleVOList = activityConfigVO.getRuleVOList();
         //// TODO: 2022/12/23 0023
     }
+
 }

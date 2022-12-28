@@ -5,6 +5,10 @@ ld:
   redis-port: 6379
   rocketmq-port:
   druid_password:          #durid控制台登陆密码
+  mq-host1:
+  mq-post1:
+  mq-host2:
+  mq-post2:
 #nacos
 nacos:
   #dev
@@ -14,3 +18,6 @@ DB_HOST: ${ld.host}:${ld.mysql-port}
 DB_NAME: luck_draw
 DB_USERNAME: root
 DB_PASSWORD: ENC(m+MdesgvfhecR2Y2Imf5wy9kDjPAZSmlYvLYU3P7GJbAUHI/tTEQo1HI5NbDv4Jn)
+
+MQ_NAME_SERVER: ${ld.mq-host1}:${ld.mq-port1};${ld.mq-host2}:${ld.mq-port2}
+MQ_GROUP: lucky-draw

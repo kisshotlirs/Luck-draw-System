@@ -1,0 +1,7 @@
+rocketmq:
+  name-server: ${MQ_NAME_SERVER}
+  producer:
+    send-message-timeout: 3000
+    group: ${MQ_GROUP}
+    retry-times-when-send-failed: 3
+    retry-times-when-send-async-failed: 3

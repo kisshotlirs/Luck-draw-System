@@ -4,7 +4,9 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.ld.app.activity.cmd.ActivityAddCmdExe;
 import cn.ld.app.activity.cmd.ActivityUpdateCmdExe;
 import cn.ld.app.activity.cmd.BaseDrawExe;
+import cn.ld.app.activity.cmd.RedisDeductionAwardNumberDrawExe;
 import cn.ld.app.activity.query.ActivityListQueryExe;
+import cn.ld.app.context.ActivityDrawContext;
 import cn.ld.client.api.ActivityConfigService;
 import cn.ld.client.api.ActivityService;
 import cn.ld.client.dto.cmd.ActivityAddCmd;
@@ -33,7 +35,7 @@ public class ActivityServiceImpl implements ActivityService {
     private final ActivityUpdateCmdExe activityUpdateCmdExe;
     private final ActivityListQueryExe activityListQueryExe;
 
-    private final BaseDrawExe drawExe;
+    private final RedisDeductionAwardNumberDrawExe drawExe;
     private final ActivityConfigService activityConfigService;
 
     @Override
@@ -65,8 +67,12 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public DrawResultVO draw(Long activityId) {
         log.info("用户：{} ，开始抽奖。。。。。。", SecurityUtil.getName());
+
+        ActivityDrawContext context = new ActivityDrawContext()
+                .setActivityConfigVO(activityConfigService.getOne(activityId));
+
         //获取活动配置
         ActivityConfigVO activityConfigVO = activityConfigService.getOne(activityId);
-        return drawExe.execute(activityConfigVO);
+        return drawExe.execute(context);
     }
 }

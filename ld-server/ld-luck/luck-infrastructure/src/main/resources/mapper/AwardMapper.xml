@@ -24,9 +24,9 @@
 
     <update id="deductionAwardNumber">
         update ld_award a
-        set a.number = a.number-#{number}
+        set a.number = a.number + #{number}
         where a.id=#{awardId}
-        and (a.number-#{number})>=0
+        and (a.number + #{number})>=0
     </update>
 
     <select id="page" resultType="cn.ld.infrastructure.database.dataObject.AwardDB">

@@ -1,5 +1,6 @@
 package cn.ld.app.listener.event;
 
+import cn.ld.client.dto.vo.ActivityConfigVO;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -9,17 +10,15 @@ import org.springframework.context.ApplicationEvent;
  */
 public class ActivityCreateEvent extends ApplicationEvent {
 
-    /**
-     * 活动创建id
-     */
-    private final Long activityId;
+    private final ActivityConfigVO activityConfigVO;
 
-    public Long getActivityId() {
-        return activityId;
+    public ActivityConfigVO getActivityConfigVO() {
+        return activityConfigVO;
     }
 
-    public ActivityCreateEvent(Object source, Long activityId) {
+    public ActivityCreateEvent(Object source, ActivityConfigVO activityConfigVO) {
         super(source);
-        this.activityId = activityId;
+
+        this.activityConfigVO = activityConfigVO;
     }
 }

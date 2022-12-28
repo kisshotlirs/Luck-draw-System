@@ -80,8 +80,9 @@ public class ActivityConfigServiceImpl implements ActivityConfigService {
         activityConfigVO.setAwardVOList(awardVOList);
 
         //发送活动创建事件
-        ActivityCreateEvent activityCreateEvent = new ActivityCreateEvent("", activityVO.getId());
+        ActivityCreateEvent activityCreateEvent = new ActivityCreateEvent("", activityConfigVO);
         applicationEventMulticaster.multicastEvent(activityCreateEvent);
+        //优化：这里可以发送MQ
 
         return activityConfigVO;
     }
