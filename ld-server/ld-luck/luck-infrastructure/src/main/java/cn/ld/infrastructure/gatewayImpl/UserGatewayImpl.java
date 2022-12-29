@@ -3,13 +3,12 @@ package cn.ld.infrastructure.gatewayImpl;
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.config.enums.LdExceptionEnum;
-import cn.ld.config.util.Assertutil;
+import cn.ld.config.util.AssertUtil;
 import cn.ld.domain.gateway.UserGateway;
 import cn.ld.domain.user.UserEntity;
 import cn.ld.infrastructure.convertor.UserConvertor;
 import cn.ld.infrastructure.database.dataObject.UserDB;
 import cn.ld.infrastructure.database.mapper.UserMapper;
-import com.alibaba.cola.exception.SysException;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
@@ -40,7 +39,7 @@ public class UserGatewayImpl implements UserGateway {
 
     private UserEntity updateUser(UserEntity entity) {
         UserDB userDB = UserConvertor.toUserDB(entity);
-        Assertutil.isTrue(userMapper.updateById(userDB)!=1, LdExceptionEnum.UPDATE_ERROR.getDescription());
+        AssertUtil.isTrue(userMapper.updateById(userDB)!=1, LdExceptionEnum.UPDATE_ERROR.getDescription());
         return UserConvertor.toUserEntity(userDB);
     }
 
@@ -49,7 +48,7 @@ public class UserGatewayImpl implements UserGateway {
      */
     private UserEntity addUser(UserEntity entity) {
         UserDB userDB = UserConvertor.toUserDB(entity);
-        Assertutil.isFalse(userMapper.insert(userDB)==1,LdExceptionEnum.ADD_ERROR.getDescription());
+        AssertUtil.isFalse(userMapper.insert(userDB)==1,LdExceptionEnum.ADD_ERROR.getDescription());
         return UserConvertor.toUserEntity(userDB);
     }
 

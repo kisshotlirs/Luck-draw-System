@@ -3,11 +3,10 @@ package cn.ld.app.activity.cmd;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.WeightRandom;
 import cn.hutool.core.util.RandomUtil;
-import cn.ld.app.assembler.AwardAssembler;
 import cn.ld.app.context.ActivityDrawContext;
 import cn.ld.client.dto.vo.*;
 import cn.ld.config.exception.LdException;
-import cn.ld.config.util.Assertutil;
+import cn.ld.config.util.AssertUtil;
 import cn.ld.domain.activity.ActivityEntity;
 import cn.ld.domain.activity.ActivityStatusEnum;
 import cn.ld.domain.activity.ActivityTime;
@@ -53,7 +52,7 @@ public abstract class DefaultDrawExe extends BaseDrawExe{
             Boolean success = Boolean.TRUE;
             try {
                 int update = awardGateWay.deductionAwardNumber(context.getAwardVO().getId(), 1);
-                Assertutil.isTrue(update!=1,"扣减库存失败！");
+                AssertUtil.isTrue(update!=1,"扣减库存失败！");
                 //插入记录
                 addRecord(context);
             }catch (Exception e){

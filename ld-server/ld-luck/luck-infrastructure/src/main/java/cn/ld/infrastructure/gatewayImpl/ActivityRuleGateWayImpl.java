@@ -3,7 +3,7 @@ package cn.ld.infrastructure.gatewayImpl;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.ld.client.dto.query.ActivityRuleListQuery;
 import cn.ld.config.enums.LdExceptionEnum;
-import cn.ld.config.util.Assertutil;
+import cn.ld.config.util.AssertUtil;
 import cn.ld.domain.activityRule.ActivityRuleEntity;
 import cn.ld.domain.gateway.ActivityRuleGateWay;
 import cn.ld.infrastructure.convertor.ActivityRuleConvertor;
@@ -31,7 +31,7 @@ public class ActivityRuleGateWayImpl implements ActivityRuleGateWay {
     @Override
     public ActivityRuleEntity save(ActivityRuleEntity entity) {
         ActivityRuleDB ruleDB = ActivityRuleConvertor.toDB(entity);
-        Assertutil.isTrue(activityRuleMapper.insert(ruleDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
+        AssertUtil.isTrue(activityRuleMapper.insert(ruleDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
         return ActivityRuleConvertor.toEntity(ruleDB);
     }
 
@@ -52,6 +52,6 @@ public class ActivityRuleGateWayImpl implements ActivityRuleGateWay {
     public void delete(Long activityId) {
         QueryWrapper<ActivityRuleDB> wrapper = new QueryWrapper<>();
         wrapper.eq("activity_id",activityId);
-        Assertutil.isTrue(activityRuleMapper.delete(wrapper)!=1,LdExceptionEnum.DELETE_ERROR.getDescription());
+        AssertUtil.isTrue(activityRuleMapper.delete(wrapper)!=1,LdExceptionEnum.DELETE_ERROR.getDescription());
     }
 }

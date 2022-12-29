@@ -1,6 +1,7 @@
 package cn.ld.config.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author mojo
@@ -8,6 +9,7 @@ import lombok.Data;
  * @date 2022/12/28 0028 22:46
  */
 @Data
+@Accessors(chain = true)
 public class ActivityDrawMessage {
 
     /**

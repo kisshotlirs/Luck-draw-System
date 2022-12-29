@@ -7,7 +7,7 @@ import cn.ld.config.exception.LdException;
  * @description: TODO
  * @date 2022/12/20 0020 19:47
  */
-public class Assertutil {
+public class AssertUtil {
 
     public static void isTrue(Boolean expression,String message){
         if (expression){

@@ -3,7 +3,7 @@ package cn.ld.infrastructure.gatewayImpl;
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.ActivityListQuery;
 import cn.ld.config.enums.LdExceptionEnum;
-import cn.ld.config.util.Assertutil;
+import cn.ld.config.util.AssertUtil;
 import cn.ld.domain.activity.ActivityEntity;
 import cn.ld.domain.gateway.ActivityGateWay;
 import cn.ld.infrastructure.convertor.ActivityConvertor;
@@ -35,13 +35,13 @@ public class ActivityGateWayImpl implements ActivityGateWay {
 
     private ActivityEntity addActivity(ActivityEntity entity) {
         ActivityDB activityDB = ActivityConvertor.toActivityDB(entity);
-        Assertutil.isTrue(activityMapper.insert(activityDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
+        AssertUtil.isTrue(activityMapper.insert(activityDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
         return ActivityConvertor.toEntity(activityDB);
     }
 
     private ActivityEntity updateActivity(ActivityEntity entity) {
         ActivityDB activityDB = ActivityConvertor.toActivityDB(entity);
-        Assertutil.isTrue(activityMapper.updateById(activityDB)!=1,LdExceptionEnum.UPDATE_ERROR.getDescription());
+        AssertUtil.isTrue(activityMapper.updateById(activityDB)!=1,LdExceptionEnum.UPDATE_ERROR.getDescription());
         return ActivityConvertor.toEntity(activityDB);
     }
 

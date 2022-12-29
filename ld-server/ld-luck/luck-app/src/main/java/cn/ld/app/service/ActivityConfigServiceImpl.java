@@ -4,9 +4,6 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.ld.app.activity.cmd.ActivityAddCmdExe;
 import cn.ld.app.activity.cmd.ActivityUpdateCmdExe;
 import cn.ld.app.activity.query.ActivityListQueryExe;
-import cn.ld.app.activityConfig.cmd.ActivityConfigAddCmdExe;
-import cn.ld.app.activityConfig.cmd.ActivityConfigUpdateCmdExe;
-import cn.ld.app.activityConfig.query.ActivityConfigGetQueryExe;
 import cn.ld.app.activityRule.cmd.ActivityRuleAddCmdExe;
 import cn.ld.app.activityRule.cmd.ActivityRuleDeleteCmdExe;
 import cn.ld.app.activityRule.query.ActivityRuleListQueryExe;
@@ -26,8 +23,7 @@ import cn.ld.client.dto.query.ActivityRuleListQuery;
 import cn.ld.client.dto.query.AwardListQuery;
 import cn.ld.client.dto.query.RuleListQuery;
 import cn.ld.client.dto.vo.*;
-import cn.ld.config.util.Assertutil;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import cn.ld.config.util.AssertUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.context.event.ApplicationEventMulticaster;
@@ -109,7 +105,7 @@ public class ActivityConfigServiceImpl implements ActivityConfigService {
         ActivityListQuery activityListQuery = new ActivityListQuery();
         activityListQuery.setId(id);
         List<ActivityVO> activityVOS = activityListQueryExe.execute(activityListQuery).getRecords();
-        Assertutil.isTrue(CollectionUtil.isEmpty(activityVOS),"活动数据不存在");
+        AssertUtil.isTrue(CollectionUtil.isEmpty(activityVOS),"活动数据不存在");
 
         ActivityConfigVO activityConfigVO = new ActivityConfigVO();
 
@@ -167,7 +163,7 @@ public class ActivityConfigServiceImpl implements ActivityConfigService {
     }
 
     private List<AwardVO> updateAward(ActivityVO activityVO, List<AwardUpdateCmd> awardUpdateCmdList) {
-        Assertutil.isTrue(CollectionUtil.isEmpty(awardUpdateCmdList),"奖项更新列表不为空");
+        AssertUtil.isTrue(CollectionUtil.isEmpty(awardUpdateCmdList),"奖项更新列表不为空");
 
         List<AwardVO> awardVOList = new ArrayList<>();
         for (AwardUpdateCmd awardUpdateCmd : awardUpdateCmdList) {
@@ -178,7 +174,7 @@ public class ActivityConfigServiceImpl implements ActivityConfigService {
     }
 
     private List<AwardVO> addAward(ActivityVO activityVO, List<AwardAddCmd> awardAddCmdList) {
-        Assertutil.isTrue(CollectionUtil.isEmpty(awardAddCmdList),"奖项添加列表不为空");
+        AssertUtil.isTrue(CollectionUtil.isEmpty(awardAddCmdList),"奖项添加列表不为空");
 
         ArrayList<AwardVO> awardVOS = new ArrayList<>();
         for (AwardAddCmd awardAddCmd : awardAddCmdList) {

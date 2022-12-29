@@ -3,7 +3,7 @@ package cn.ld.infrastructure.gatewayImpl;
 import cn.hutool.core.util.ObjectUtil;
 import cn.ld.client.dto.query.RuleListQuery;
 import cn.ld.config.enums.LdExceptionEnum;
-import cn.ld.config.util.Assertutil;
+import cn.ld.config.util.AssertUtil;
 import cn.ld.domain.gateway.RuleGateWay;
 import cn.ld.domain.rule.RuleEntity;
 import cn.ld.infrastructure.convertor.RuleConvertor;
@@ -35,13 +35,13 @@ public class RuleGateWayImpl implements RuleGateWay {
 
     private RuleEntity addRule(RuleEntity entity) {
         RuleDB ruleDB = RuleConvertor.toRuleDB(entity);
-        Assertutil.isTrue(ruleMapper.insert(ruleDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
+        AssertUtil.isTrue(ruleMapper.insert(ruleDB)!=1, LdExceptionEnum.ADD_ERROR.getDescription());
         return RuleConvertor.toEntity(ruleDB);
     }
 
     private RuleEntity updateRule(RuleEntity entity) {
         RuleDB ruleDB = RuleConvertor.toRuleDB(entity);
-        Assertutil.isTrue(ruleMapper.updateById(ruleDB)!=1,LdExceptionEnum.UPDATE_ERROR.getDescription());
+        AssertUtil.isTrue(ruleMapper.updateById(ruleDB)!=1,LdExceptionEnum.UPDATE_ERROR.getDescription());
         return RuleConvertor.toEntity(ruleDB);
     }
 

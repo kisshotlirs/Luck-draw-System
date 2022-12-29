@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.ld.app.assembler.AwardAssembler;
 import cn.ld.client.dto.cmd.AwardAddCmd;
 import cn.ld.client.dto.vo.AwardVO;
-import cn.ld.config.util.Assertutil;
+import cn.ld.config.util.AssertUtil;
 import cn.ld.domain.award.AwardEntity;
 import cn.ld.domain.gateway.AwardGateWay;
 import cn.ld.domain.gateway.PrizeGateWay;
@@ -25,7 +25,7 @@ public class AwardAddCmdExe {
     private final PrizeGateWay prizeGateWay;
 
     public AwardVO execute(AwardAddCmd cmd) {
-        Assertutil.isTrue(ObjectUtil.isNull(cmd.getActivityId()),"奖项的活动id不为空");
+        AssertUtil.isTrue(ObjectUtil.isNull(cmd.getActivityId()),"奖项的活动id不为空");
         AwardEntity entity = awardGateWay.save(AwardAssembler.toAddEntity(cmd));
 
         //判断是否为奖品，是否需要扣除奖品库存
@@ -36,7 +36,7 @@ public class AwardAddCmdExe {
 
         //添加奖项后 扣除奖品库存
         int updated = prizeGateWay.reduceInventory(cmd.getPrizeId(),cmd.getNumber());
-        Assertutil.isTrue(updated!=1,String.format("扣取奖品：%s 出错，库存不足或奖品不存在",cmd.getPrizeId()));
+        AssertUtil.isTrue(updated!=1,String.format("扣取奖品：%s 出错，库存不足或奖品不存在",cmd.getPrizeId()));
 
         return AwardAssembler.toAwardVO(entity);
     }
