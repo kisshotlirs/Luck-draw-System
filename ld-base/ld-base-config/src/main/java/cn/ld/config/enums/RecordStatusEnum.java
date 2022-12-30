@@ -1,4 +1,4 @@
-package cn.ld.domain.record;
+package cn.ld.config.enums;
 
 import lombok.Getter;
 

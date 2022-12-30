@@ -30,6 +30,8 @@ public class RecordEntity {
      */
     private Long activityId;
 
+    private String activityName;
+
     /**
      * 奖项id
      */

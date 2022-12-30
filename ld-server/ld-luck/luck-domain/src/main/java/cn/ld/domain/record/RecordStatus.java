@@ -1,5 +1,6 @@
 package cn.ld.domain.record;
 
+import cn.ld.config.enums.RecordStatusEnum;
 import cn.ld.config.util.AssertUtil;
 import lombok.Getter;
 

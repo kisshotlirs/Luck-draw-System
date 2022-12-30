@@ -25,5 +25,5 @@ public class RecordListQuery extends PageQuery {
     /**
      * 记录状态
      */
-    private Integer status;
+    private Integer state;
 }

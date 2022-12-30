@@ -31,6 +31,11 @@ public class SecurityUtil {
         return ObjectUtil.isEmpty(username) ? "" : username.toString();
     }
 
+    public static Long getUserId(){
+        Object userId = USER_THREAD_LOCAL.get().get("id");
+        return ObjectUtil.isEmpty(userId) ? 0L : Long.parseLong(userId.toString());
+    }
+
     public static String getName(){
         Object name = USER_THREAD_LOCAL.get().get("name");
         return ObjectUtil.isEmpty(name) ? "" : name.toString();

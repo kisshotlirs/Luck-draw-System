@@ -21,5 +21,16 @@ public class ActivityDrawContext {
      * 抽奖算法获得到的奖项
      */
     private AwardVO awardVO;
+
     private AwardEntity awardEntity;
+
+    /**
+     * 是否中奖
+     */
+    private Boolean isWinTheLottery;
+
+    /**
+     * 是否可见
+     */
+    private Boolean isShow;
 }

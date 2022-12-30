@@ -36,18 +36,32 @@ public abstract class BaseDrawExe {
         context.setAwardEntity(AwardAssembler.toAwardEntity(context.getAwardVO()));
 
         if (!context.getAwardEntity().isPrize()){
+            //插入未中奖记录
+            return addRecordAndGetDrawResultVO(context);
+
+            //插入中奖记录
+            //addRecord(context);
             //不是奖项，不用扣减库存
-            return getDrawResultVO(context.getAwardEntity());}
+            //return getDrawResultVO(context.getAwardEntity());
+            }
 
         //抽奖结果，发送MQ消息 由该方法决定
         Boolean draw = drawBefore(context);
         if (Boolean.FALSE.equals(drawBefore(context))){
-            return getDefaultDrawResultVO(context.getActivityConfigVO().getAwardVOList());
+            //执行drawBefore出错，默认返回未中奖
+            context.setAwardVO(getAward(context.getActivityConfigVO().getAwardVOList()));
+            context.setAwardEntity(AwardAssembler.toAwardEntity(context.getAwardVO()));
+            context.setIsWinTheLottery(Boolean.FALSE);
+            return addRecordAndGetDrawResultVO(context);
         }
 
         //返回结果
         return getDrawResultVO(context.getAwardEntity());
     }
+
+    protected abstract DrawResultVO addRecordAndGetDrawResultVO(ActivityDrawContext context);
+
+    public abstract void addRecord(ActivityDrawContext context);
 
     protected abstract Boolean drawBefore(ActivityDrawContext context);
 
@@ -74,4 +88,5 @@ public abstract class BaseDrawExe {
     protected abstract void checkActivityRule(ActivityConfigVO activityConfigVO);
 
     protected abstract void checkActivityTime(ActivityVO activityVO);
+
 }

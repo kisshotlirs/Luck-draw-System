@@ -33,7 +33,7 @@ public class ActivityDrawMessageConsume implements RocketMQListener<ActivityDraw
         ActivityDrawContext context = JSONObject.parseObject(body, ActivityDrawContext.class);
 
         //扣减库存 修改中奖记录状态
-        Boolean result = drawExe.deductionOfInventoryAndUpdateRecordStatus(context);
+        Boolean result = drawExe.mqDeductionOfInventoryAndUpdateRecordStatus(context);
         if (Boolean.FALSE.equals(result)){
             AssertUtil.isTrue(true,"执行消费MQ逻辑失败（扣减库存和修改不可见记录）");
         }

@@ -27,6 +27,8 @@ public class RecordDB implements Serializable {
      */
     private Long activityId;
 
+    private String activityName;
+
     /**
      * 奖项id
      */

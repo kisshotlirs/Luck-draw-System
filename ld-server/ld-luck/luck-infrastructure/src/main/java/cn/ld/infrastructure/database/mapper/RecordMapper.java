@@ -1,7 +1,11 @@
 package cn.ld.infrastructure.database.mapper;
 
+import cn.ld.client.dto.query.RecordListQuery;
 import cn.ld.infrastructure.database.dataObject.RecordDB;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author Administrator
@@ -11,6 +15,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface RecordMapper extends BaseMapper<RecordDB> {
 
+    IPage<RecordDB> page(@Param("recordDBPage") Page<RecordDB> recordDBPage, @Param("query") RecordListQuery query);
+
+    Integer updateStatus(@Param("recordId") Long recordId, @Param("status") Integer status);
 }
 
 

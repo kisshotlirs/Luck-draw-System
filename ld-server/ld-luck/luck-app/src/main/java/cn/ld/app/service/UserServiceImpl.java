@@ -58,7 +58,10 @@ public class UserServiceImpl implements UserService {
     public String login(UserLoginQuery query) {
         UserVO userVO = userLoginQueryExe.execute(query);
         //使用jwt生成token返回给页面
-        return JwtUtil.createToken(Map.of("username",userVO.getUsername(),"name", userVO.getName(), "phone", userVO.getPhone()));
+        return JwtUtil.createToken(Map.of("username",userVO.getUsername(),
+                "name", userVO.getName(),
+                "phone", userVO.getPhone(),
+                "id",userVO.getId()));
     }
 
     /**

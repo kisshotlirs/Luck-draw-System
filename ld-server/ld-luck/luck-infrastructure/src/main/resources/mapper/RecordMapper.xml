@@ -23,4 +23,29 @@
         create_time,creator,update_time,
         updater
     </sql>
+
+    <update id="updateStatus">
+        update ld_record
+        set a.state = #{status}
+        where a.id = #{recordId}
+    </update>
+
+    <select id="page" resultType="cn.ld.infrastructure.database.dataObject.RecordDB">
+        select * from ld_record a
+        <where>
+            <if test="query.userId!=null">
+                and a.userId=#{query.userId}
+            </if>
+            <if test="query.activityId!=null">
+                and a.activityId=#{query.activityId}
+            </if>
+            <if test="query.winTheLottery!=null">
+                and a.is_winning=#{query.winTheLottery}
+            </if>
+            <if test="query.status!=null">
+                and a.state=#{query.status}
+            </if>
+        </where>
+    </select>
+
 </mapper>

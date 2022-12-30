@@ -28,6 +28,6 @@ public class RecordStatusScheduled {
          * 定时扫描用户不可见状态的中奖记录，然后对比当前时间和数据创建时间，
          * 发现两者相隔10分钟，那么，定时任务就将这个数据查询出来，再执行一般方案三消费流程
          */
-
+        drawExe.ScheduleExecuteDeductionOfInventoryAndUpdateRecordStatus();
     }
 }
