@@ -1,5 +1,6 @@
 package cn.ld.client.dto.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,10 @@ public class RecordVO {
      * 奖项id
      */
     private Long awardId;
+
+    private String awardName;
+    
+    private String prizeName;
 
     /**
      * 是否中奖：0未中奖，1中奖

@@ -124,13 +124,13 @@ public class RedisDeductionAwardNumberDrawExe extends DefaultDrawExe{
      * MQ执行 扣减库存 并 修改中奖记录状态（将不可见变为可见）
      */
     public Boolean mqDeductionOfInventoryAndUpdateRecordStatus(ActivityDrawContext context) {
-        return deductionOfInventoryAndUpdateRecordStatus(context.getAwardVO().getId());
+        return deductionOfInventoryAndUpdateRecordStatus(context.getAwardVO().getId(), context.getRecordId());
     }
 
     /**
      * 扣减库存 并 修改中奖记录状态（将不可见变为可见）
      */
-    public Boolean deductionOfInventoryAndUpdateRecordStatus(Long awardId) {
+    public Boolean deductionOfInventoryAndUpdateRecordStatus(Long awardId,Long recordId) {
         return super.getTransactionTemplate().execute(status -> {
             Boolean success = Boolean.TRUE;
 
@@ -139,7 +139,7 @@ public class RedisDeductionAwardNumberDrawExe extends DefaultDrawExe{
                 int update = super.getAwardGateWay().deductionAwardNumber(awardId, -1);
                 AssertUtil.isTrue(update!=1,"扣减库存失败");
                 //修改不可见中奖记录状态
-                Boolean updateStatus = super.getRecordGateway().updateStatus(awardId, RecordStatusEnum.STATUE_1.getValue());
+                Boolean updateStatus = super.getRecordGateway().updateStatus(recordId, RecordStatusEnum.STATUE_1.getValue());
                 AssertUtil.isTrue(updateStatus,"修改不可见记录状态失败");
             }catch (Exception e){
                 log.error("消费者执行扣减库存并修改中奖记录状态出错，",e);
@@ -170,7 +170,7 @@ public class RedisDeductionAwardNumberDrawExe extends DefaultDrawExe{
                 //五分钟之内不执行
                 continue;
             }
-            deductionOfInventoryAndUpdateRecordStatus(record.getAwardId());
+            deductionOfInventoryAndUpdateRecordStatus(record.getAwardId(), record.getId());
         }
     }
 }

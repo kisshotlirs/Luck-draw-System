@@ -31,7 +31,10 @@
     </update>
 
     <select id="page" resultType="cn.ld.infrastructure.database.dataObject.RecordDB">
-        select * from ld_record a
+        select a.*,b.award_name,c.prize_name
+        from ld_record a
+        left join ld_award b on a.award_id=b.id
+        left join ld__prize c on b.prize_id=c.id
         <where>
             <if test="query.userId!=null">
                 and a.userId=#{query.userId}

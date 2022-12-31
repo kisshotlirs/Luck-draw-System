@@ -84,7 +84,8 @@ public class DefaultDrawExe extends BaseDrawExe{
         recordAddCmd.setIsWinning(context.getAwardEntity().isPrize() ? 1:0);
         recordAddCmd.setState(context.getIsShow() ? RecordStatusEnum.STATUE_1.getValue() : RecordStatusEnum.STATUE_0.getValue());
 
-        recordGateway.save(RecordAssembler.toAddEntity(recordAddCmd));
+        RecordEntity recordEntity = recordGateway.save(RecordAssembler.toAddEntity(recordAddCmd));
+        context.setRecordId(recordEntity.getId());
     }
 
     @Override

@@ -37,6 +37,10 @@ public class RecordEntity {
      */
     private Long awardId;
 
+    private String awardName;
+
+    private String prizeName;
+
     /**
      * 是否中奖：0未中奖，1中奖
      */

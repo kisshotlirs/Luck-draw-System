@@ -34,6 +34,12 @@ public class RecordDB implements Serializable {
      */
     private Long awardId;
 
+    @TableField(exist = false)
+    private String awardName;
+
+    @TableField(exist = false)
+    private String prizeName;
+
     /**
      * 是否中奖：0未中奖，1中奖
      */

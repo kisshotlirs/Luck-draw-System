@@ -3,6 +3,7 @@ package cn.ld.app.context;
 import cn.ld.client.dto.vo.ActivityConfigVO;
 import cn.ld.client.dto.vo.AwardVO;
 import cn.ld.domain.award.AwardEntity;
+import cn.ld.domain.record.RecordEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -33,4 +34,9 @@ public class ActivityDrawContext {
      * 是否可见
      */
     private Boolean isShow;
+
+    /**
+     * 中奖记录id
+     */
+    private Long recordId;
 }

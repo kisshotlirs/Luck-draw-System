@@ -17,7 +17,7 @@ nacos:
 DB_HOST: ${ld.host}:${ld.mysql-port}
 DB_NAME: luck_draw
 DB_USERNAME: root
-DB_PASSWORD: ENC(m+MdesgvfhecR2Y2Imf5wy9kDjPAZSmlYvLYU3P7GJbAUHI/tTEQo1HI5NbDv4Jn)
+DB_PASSWORD: 123456
 
 MQ_NAME_SERVER: ${ld.mq-host1}:${ld.mq-port1};${ld.mq-host2}:${ld.mq-port2}
 MQ_GROUP: lucky-draw

@@ -36,6 +36,8 @@ public class RecordAssembler {
         recordVO.setActivityId(entity.getActivityId());
         recordVO.setActivityName(entity.getActivityName());
         recordVO.setAwardId(entity.getAwardId());
+        recordVO.setPrizeName(entity.getPrizeName());
+        recordVO.setAwardName(entity.getAwardName());
         recordVO.setIsWinning(entity.getIsWinning());
         recordVO.setState(entity.getState().getState().getValue());
         recordVO.setCreateTime(entity.getCreateTime());

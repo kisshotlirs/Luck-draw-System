@@ -19,6 +19,8 @@ public class RecordConvertor {
         recordDB.setActivityId(entity.getActivityId());
         recordDB.setActivityName(entity.getActivityName());
         recordDB.setAwardId(entity.getAwardId());
+        recordDB.setAwardName(entity.getAwardName());
+        recordDB.setPrizeName(entity.getPrizeName());
         recordDB.setIsWinning(entity.getIsWinning());
         recordDB.setState(entity.getState().getState().getValue());
         recordDB.setCreateTime(entity.getCreateTime());
@@ -35,6 +37,8 @@ public class RecordConvertor {
         entity.setActivityId(recordDB.getActivityId());
         entity.setActivityName(recordDB.getActivityName());
         entity.setAwardId(recordDB.getAwardId());
+        entity.setAwardName(recordDB.getAwardName());
+        entity.setPrizeName(recordDB.getPrizeName());
         entity.setIsWinning(recordDB.getIsWinning());
         entity.setState(new RecordStatus(recordDB.getState()));
         entity.setCreateTime(recordDB.getCreateTime());
