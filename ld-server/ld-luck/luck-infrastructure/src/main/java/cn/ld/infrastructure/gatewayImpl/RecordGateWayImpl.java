@@ -12,6 +12,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 /**
  * @author mojo
  * @description: TODO
@@ -40,5 +42,10 @@ public class RecordGateWayImpl implements RecordGateway {
     @Override
     public Boolean updateStatus(Long recordId, Integer status) {
         return recordMapper.updateStatus(recordId,status) == 1;
+    }
+
+    @Override
+    public BigDecimal getPrizeMoneyByRecordId(Long recordId) {
+        return recordMapper.getPrizeMoneyByRecordId(recordId);
     }
 }

@@ -31,13 +31,16 @@
     </update>
 
     <select id="page" resultType="cn.ld.infrastructure.database.dataObject.RecordDB">
-        select a.*,b.award_name,c.prize_name
+        select a.*,b.award_name,c.prize_name,c.type as prizeType
         from ld_record a
         left join ld_award b on a.award_id=b.id
-        left join ld__prize c on b.prize_id=c.id
+        left join ld_prize c on b.prize_id=c.id
         <where>
             <if test="query.userId!=null">
                 and a.userId=#{query.userId}
+            </if>
+            <if test="query.recordId!=null">
+                and a.id=#{query.recordId}
             </if>
             <if test="query.activityId!=null">
                 and a.activityId=#{query.activityId}
@@ -49,6 +52,14 @@
                 and a.state=#{query.status}
             </if>
         </where>
+    </select>
+
+    <select id="getPrizeMoneyByRecordId" resultType="java.math.BigDecimal">
+        select c.money
+        from ld_record a
+             left join ld_award b on a.award_id=b.id
+             left join ld_prize c on b.prize_id=c.id
+        where c.type=2 and a.id=#{recordId}
     </select>
 
 </mapper>

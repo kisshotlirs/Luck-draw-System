@@ -1,4 +1,4 @@
-package cn.ld.adapter.web;
+package cn.ld.adapter.web.admin;
 
 import cn.ld.client.api.RecordService;
 import cn.ld.client.dto.cmd.RecordUpdateStatusCmd;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @ResponseResult
 @AllArgsConstructor
-@RequestMapping("/v1/record")
-public class RecordController {
+@RequestMapping("/admin/v1/record")
+public class AdminRecordController {
 
     private final RecordService recordService;
 
@@ -28,20 +28,10 @@ public class RecordController {
         return recordService.page(query);
     }
 
-    @GetMapping("/prizeType")
-    public Integer prizeType(@RequestParam("recordId") Long recordId){
-        return recordService.prizeType(recordId);
-    }
-
-    @PostMapping("/updateStatusTo4")
-    public Boolean updateStatusTo4(@RequestBody RecordUpdateStatusCmd cmd){
-        cmd.setStatus(4);
+    @PostMapping("/updateStatusTo3")
+    public Boolean updateStatusTo3(@RequestBody RecordUpdateStatusCmd cmd){
+        cmd.setStatus(3);
         return recordService.updateStatus(cmd);
-    }
-
-    @GetMapping("/exchangeMoney")
-    public Boolean exchangeMoney(@RequestParam("recordId") Long recordId){
-        return recordService.exchangeMoney(recordId);
     }
 
 }

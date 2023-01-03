@@ -13,6 +13,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class RecordListQuery extends PageQuery {
 
+    private Long recordId;
+
     private Long userId;
 
     private Long activityId;

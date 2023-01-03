@@ -5,6 +5,8 @@ import cn.ld.domain.record.RecordEntity;
 import cn.ld.domain.record.RecordStatus;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
+import java.math.BigDecimal;
+
 /**
  * @author mojo
  * @description: TODO
@@ -17,4 +19,6 @@ public interface RecordGateway {
     IPage<RecordEntity> page(RecordListQuery query);
 
     Boolean updateStatus(Long recordId, Integer status);
+
+    BigDecimal getPrizeMoneyByRecordId(Long recordId);
 }

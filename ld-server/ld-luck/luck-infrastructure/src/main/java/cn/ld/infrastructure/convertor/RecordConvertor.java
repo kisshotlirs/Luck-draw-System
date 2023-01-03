@@ -27,6 +27,7 @@ public class RecordConvertor {
         recordDB.setCreator(entity.getCreator());
         recordDB.setUpdateTime(entity.getUpdateTime());
         recordDB.setUpdater(entity.getUpdater());
+        recordDB.setPrizeType(entity.getPrizeType());
         return recordDB;
     }
 
@@ -45,6 +46,7 @@ public class RecordConvertor {
         entity.setCreator(recordDB.getCreator());
         entity.setUpdateTime(recordDB.getUpdateTime());
         entity.setUpdater(recordDB.getUpdater());
+        entity.setPrizeType(recordDB.getPrizeType());
         return entity;
     }
 }

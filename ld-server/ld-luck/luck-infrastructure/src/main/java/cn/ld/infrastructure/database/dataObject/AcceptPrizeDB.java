@@ -1,12 +1,10 @@
-package cn.ld.user.po;
+package cn.ld.infrastructure.database.dataObject;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import lombok.Data;
-import org.apache.tomcat.jni.Local;
 
 /**
  * 
@@ -14,9 +12,9 @@ import org.apache.tomcat.jni.Local;
  */
 @TableName(value ="ld_accept_prize")
 @Data
-public class AcceptPrize implements Serializable {
+public class AcceptPrizeDB implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Long id;

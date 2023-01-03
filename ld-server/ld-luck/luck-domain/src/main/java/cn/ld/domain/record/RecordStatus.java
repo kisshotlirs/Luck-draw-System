@@ -36,6 +36,10 @@ public class RecordStatus {
             this.state = RecordStatusEnum.STATUE_3;
             return;
         }
+        if (RecordStatusEnum.STATUE_4.getValue().equals(state)){
+            this.state = RecordStatusEnum.STATUE_4;
+            return;
+        }
         AssertUtil.isTrue(true,"记录状态无效");
     }
 }

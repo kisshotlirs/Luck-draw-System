@@ -40,6 +40,9 @@ public class RecordDB implements Serializable {
     @TableField(exist = false)
     private String prizeName;
 
+    @TableField(exist = false)
+    private Integer prizeType;
+
     /**
      * 是否中奖：0未中奖，1中奖
      */

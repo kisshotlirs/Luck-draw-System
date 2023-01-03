@@ -20,4 +20,14 @@ public interface RecordService {
     RecordVO add(RecordAddCmd cmd);
 
     Boolean updateStatus(RecordUpdateStatusCmd cmd);
+
+    /**
+     * 获取奖品中奖类型（1.商品 2.金钱）
+     */
+    Integer prizeType(Long recordId);
+
+    /**
+     * 兑换金钱类奖品
+     */
+    Boolean exchangeMoney(Long recordId);
 }

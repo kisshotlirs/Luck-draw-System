@@ -1,4 +1,4 @@
-package cn.ld.domain.record;
+package cn.ld.domain.acceptPrize;
 
 import com.alibaba.cola.domain.Entity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
@@ -12,46 +12,28 @@ import java.time.LocalDateTime;
 /**
  * @author mojo
  * @description: TODO
- * @date 2022/12/29 0029 21:41
+ * @date 2023/1/3 0003 15:14
  */
 @Data
 @Entity
-public class RecordEntity {
+public class AcceptPrizeEntity {
 
     private Long id;
 
     /**
-     * 用户id
+     * 抽奖记录id
      */
-    private Long userId;
+    private Long recordId;
 
     /**
-     * 活动id
+     * 电话
      */
-    private Long activityId;
-
-    private String activityName;
+    private String phone;
 
     /**
-     * 奖项id
+     * 地址
      */
-    private Long awardId;
-
-    private String awardName;
-
-    private String prizeName;
-
-    private Integer prizeType;
-
-    /**
-     * 是否中奖：0未中奖，1中奖
-     */
-    private Integer isWinning;
-
-    /**
-     * 状态（0，1，2，3）
-     */
-    private RecordStatus state;
+    private String address;
 
     private LocalDateTime createTime;
 
