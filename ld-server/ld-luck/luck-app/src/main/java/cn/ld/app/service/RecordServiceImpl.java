@@ -15,9 +15,14 @@ import cn.ld.client.dto.query.PrizeListQuery;
 import cn.ld.client.dto.query.RecordListQuery;
 import cn.ld.client.dto.vo.AwardVO;
 import cn.ld.client.dto.vo.RecordVO;
+import cn.ld.client.feign.WalletFeignApi;
+import cn.ld.client.feign.form.UpdateWalletForm;
+import cn.ld.client.feign.vo.WalletUpdateResultVO;
 import cn.ld.config.util.AssertUtil;
+import cn.ld.config.util.SecurityUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -29,6 +34,7 @@ import java.util.Objects;
  * @description: TODO
  * @date 2022/12/30 0030 11:26
  */
+@Slf4j
 @Service
 @AllArgsConstructor
 public class RecordServiceImpl implements RecordService {
@@ -38,7 +44,8 @@ public class RecordServiceImpl implements RecordService {
     private final RecordListQueryExe recordListQueryExe;
 
     private final RecordMoneyQueryExe recordMoneyQueryExe;
-    private final AwardListQueryCmdExe awardListQueryCmdExe;
+
+    private final WalletFeignApi walletFeignApi;
 
     @Override
     public IPage<RecordVO> page(RecordListQuery query) {
@@ -80,19 +87,29 @@ public class RecordServiceImpl implements RecordService {
         //获取奖品金额
         BigDecimal money = recordMoneyQueryExe.execute(recordId);
 
-        //// TODO: 2023/1/3 0003  
-        //调用给用户钱包加钱逻辑
-
-        Boolean result = Boolean.TRUE;
-        if (Boolean.FALSE.equals(result)){
-            return Boolean.FALSE;
-        }
-
         //将记录状态改为4（流程结束）
         RecordUpdateStatusCmd cmd = new RecordUpdateStatusCmd();
         cmd.setId(recordId);
         cmd.setStatus(4);
         updateStatus(cmd);
+
+        try {
+            //调用给用户钱包加钱逻辑 （这里是调用feign或者mq实现价钱逻辑，拿到结果）
+            UpdateWalletForm form = new UpdateWalletForm();
+            form.setUserId(SecurityUtil.getUserId());
+            form.setUpdateMoney(money.multiply(new BigDecimal("-1")));
+            WalletUpdateResultVO resultVO = walletFeignApi.updateBalance(form);
+
+            if (Boolean.FALSE.equals(resultVO.getResult())){
+                return Boolean.FALSE;
+            }
+        } catch (Exception e){
+            //错误处理，回滚，使状态重置
+            log.error("调用 修改用户钱包金额逻辑 失败：",e);
+            cmd.setStatus(1);
+            updateStatus(cmd);
+            return Boolean.FALSE;
+        }
 
         return Boolean.TRUE;
     }

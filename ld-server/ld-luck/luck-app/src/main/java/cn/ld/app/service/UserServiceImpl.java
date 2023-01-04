@@ -11,6 +11,7 @@ import cn.ld.client.dto.cmd.UserUpdateCmd;
 import cn.ld.client.dto.vo.UserVO;
 import cn.ld.client.dto.query.UserListByParamQuery;
 import cn.ld.client.dto.query.UserLoginQuery;
+import cn.ld.client.feign.WalletFeignApi;
 import cn.ld.config.exception.LdException;
 import cn.ld.config.util.JwtUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -42,12 +43,23 @@ public class UserServiceImpl implements UserService {
 
     private final UserUpdateCmdExe userUpdateCmdExe;
 
+    private final WalletFeignApi walletFeignApi;
+
     /**
      * 用户注册
      */
     @Override
     public UserVO register(UserRegisterCmd cmd) {
-        return userRegisterCmdExe.execute(cmd);
+        UserVO userVO = userRegisterCmdExe.execute(cmd);
+
+        try {
+            //调用服务初始化钱包
+            walletFeignApi.initUserWallet(userVO.getId());
+        } catch (Exception e){
+            log.error("用户注册成功，但初始化钱包失败：",e);
+            //失败这里不做处理，兜底：使用定时任务给没有钱包的用户初始化钱包
+        }
+        return userVO;
     }
 
     /**
