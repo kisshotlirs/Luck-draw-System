@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @description: TODO
  * @date 2022/12/29 0029 19:49
  */
-@EnableFeignClients
+@EnableFeignClients(basePackages = "cn.ld")
 @Configuration
 @EnableScheduling
 @ComponentScan("cn.ld")

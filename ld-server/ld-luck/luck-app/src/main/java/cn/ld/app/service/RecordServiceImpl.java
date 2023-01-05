@@ -84,6 +84,10 @@ public class RecordServiceImpl implements RecordService {
         Integer prizeType = prizeType(recordId);
         AssertUtil.isTrue(prizeType!=2,"奖品类型兑换出错");
 
+        //校验奖品状态
+        RecordVO recordVO = getPrizeByRecordId(recordId);
+        AssertUtil.isTrue(recordVO.getState()!=1,"记录状态非法！");
+
         //获取奖品金额
         BigDecimal money = recordMoneyQueryExe.execute(recordId);
 
@@ -97,7 +101,7 @@ public class RecordServiceImpl implements RecordService {
             //调用给用户钱包加钱逻辑 （这里是调用feign或者mq实现价钱逻辑，拿到结果）
             UpdateWalletForm form = new UpdateWalletForm();
             form.setUserId(SecurityUtil.getUserId());
-            form.setUpdateMoney(money.multiply(new BigDecimal("-1")));
+            form.setUpdateMoney(money);
             WalletUpdateResultVO resultVO = walletFeignApi.updateBalance(form);
 
             if (Boolean.FALSE.equals(resultVO.getResult())){
